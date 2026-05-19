@@ -1,0 +1,1 @@
+import{j as e,b as r}from"./index-BuDQKivU.js";const n=()=>e.jsxs("div",{className:"pt-40 pb-24 text-center",children:[e.jsx("p",{className:"text-muted-foreground",children:"Une erreur est survenue."}),e.jsx(r,{to:"/blog",className:"mt-4 inline-block text-gold-dark link-underline",children:"← Retour au blog"})]});export{n as errorComponent};
