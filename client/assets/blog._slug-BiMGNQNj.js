@@ -1,1 +1,0 @@
-import{j as t,b as e}from"./index-BuDQKivU.js";const n=()=>t.jsxs("div",{className:"pt-40 pb-24 text-center",children:[t.jsx("p",{className:"text-muted-foreground",children:"Article introuvable."}),t.jsx(e,{to:"/blog",className:"mt-4 inline-block text-gold-dark link-underline",children:"← Retour au blog"})]});export{n as notFoundComponent};

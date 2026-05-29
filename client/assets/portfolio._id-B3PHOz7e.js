@@ -1,1 +1,0 @@
-import{j as o,b as t}from"./index-BuDQKivU.js";const n=()=>o.jsxs("div",{className:"pt-40 pb-24 text-center",children:[o.jsx("p",{className:"text-muted-foreground",children:"Projet introuvable."}),o.jsx(t,{to:"/portfolio",className:"mt-4 inline-block text-gold-dark link-underline",children:"← Retour au portfolio"})]});export{n as notFoundComponent};
