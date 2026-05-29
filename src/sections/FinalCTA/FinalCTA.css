@@ -1,0 +1,347 @@
+/* ===== FINAL CTA SECTION ===== */
+        #final-cta {
+          padding: 6rem 1rem;
+          background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+          position: relative;
+          overflow: hidden;
+        }
+
+        #final-cta .final-cta-container {
+          max-width: 1000px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          gap: 3rem;
+          align-items: center;
+          position: relative;
+          z-index: 2;
+        }
+
+        #final-cta .final-cta-header {
+          margin-bottom: 2rem;
+        }
+
+        #final-cta .final-cta-title {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: white;
+          margin-bottom: 1rem;
+          line-height: 1.2;
+        }
+
+        #final-cta .final-cta-subtitle {
+          font-size: 1.25rem;
+          color: rgba(255, 255, 255, 0.9);
+          line-height: 1.6;
+        }
+
+        #final-cta .final-cta-benefits {
+          margin-bottom: 2.5rem;
+        }
+
+        #final-cta .benefits-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1rem;
+        }
+
+        #final-cta .benefit-item {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          color: white;
+          font-weight: 500;
+        }
+
+        #final-cta .benefit-icon {
+          width: 1.25rem;
+          height: 1.25rem;
+          color: #E4B31A;
+          flex-shrink: 0;
+        }
+
+        #final-cta .final-cta-actions {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+          margin-bottom: 2rem;
+        }
+
+        #final-cta .cta-primary-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: #E4B31A;
+          color: #1E2A38;
+          padding: 1rem 2rem;
+          border-radius: 0.5rem;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 1.125rem;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(228, 179, 26, 0.3);
+        }
+
+        #final-cta .cta-primary-button:hover {
+          background: #d4a017;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(228, 179, 26, 0.4);
+        }
+
+        #final-cta .cta-primary-button:focus {
+          outline: 2px solid white;
+          outline-offset: 2px;
+        }
+
+        #final-cta .cta-secondary-button {
+          display: inline-flex;
+          align-items: center;
+          color: white;
+          padding: 1rem 2rem;
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          border-radius: 0.5rem;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 1.125rem;
+          transition: all 0.3s ease;
+        }
+
+        #final-cta .cta-secondary-button:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: white;
+          transform: translateY(-2px);
+        }
+
+        #final-cta .cta-secondary-button:focus {
+          outline: 2px solid #E4B31A;
+          outline-offset: 2px;
+        }
+
+        #final-cta .button-icon {
+          width: 1.25rem;
+          height: 1.25rem;
+          transition: transform 0.3s ease;
+        }
+
+        #final-cta .cta-primary-button:hover .button-icon {
+          transform: translateX(3px);
+        }
+
+        #final-cta .final-cta-guarantee {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.875rem;
+          margin: 0;
+        }
+
+        #final-cta .final-cta-visual {
+          position: relative;
+          height: 300px;
+        }
+
+        #final-cta .cta-visual-circle {
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.1);
+          animation: float 6s ease-in-out infinite;
+        }
+
+        #final-cta .cta-visual-circle.circle-1 {
+          width: 120px;
+          height: 120px;
+          top: 20%;
+          left: 20%;
+          animation-delay: 0s;
+        }
+
+        #final-cta .cta-visual-circle.circle-2 {
+          width: 80px;
+          height: 80px;
+          top: 60%;
+          left: 60%;
+          animation-delay: 2s;
+        }
+
+        #final-cta .cta-visual-circle.circle-3 {
+          width: 60px;
+          height: 60px;
+          top: 10%;
+          right: 10%;
+          animation-delay: 4s;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          33% { transform: translateY(-20px) rotate(120deg); }
+          66% { transform: translateY(10px) rotate(240deg); }
+        }
+
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.8s ease forwards;
+        }
+
+        .animate-fade-in-delay {
+          animation: fadeIn 0.8s ease 0.2s forwards;
+          opacity: 0;
+        }
+
+        .animate-slide-up {
+          animation: slideUp 0.6s ease forwards;
+        }
+
+        .animate-bounce-in {
+          animation: bounceIn 0.8s ease forwards;
+        }
+
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceIn {
+          0% { opacity: 0; transform: scale(0.3); }
+          50% { transform: scale(1.05); }
+          70% { transform: scale(0.9); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        
+        /* Tablettes */
+        @media (max-width: 768px) {
+          
+          #final-cta {
+            padding: 4rem 1rem;
+          }
+
+          #final-cta .final-cta-title {
+            font-size: 2rem;
+          }
+
+          #final-cta .final-cta-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+          }
+
+          #final-cta .benefits-list {
+            grid-template-columns: 1fr;
+          }
+
+          #final-cta .final-cta-actions {
+            justify-content: center;
+          }
+        }
+
+        /* Mobiles */
+        @media (max-width: 480px) {
+          #final-cta {
+            padding: 3rem 1rem;
+          }
+
+          #final-cta .final-cta-title {
+            font-size: 1.75rem;
+          }
+
+          #final-cta .cta-primary-button,
+          #final-cta .cta-secondary-button {
+            width: 100%;
+            justify-content: center;
+            padding: 1rem;
+          }
+
+          #final-cta .final-cta-actions {
+            flex-direction: column;
+          }
+        }
+
+        /* Montres connectées */
+        @media (max-width: 320px) {
+          #final-cta {
+            padding: 2rem 0.5rem;
+          }
+
+         #final-cta .final-cta-title {
+            font-size: 1.5rem;
+          }
+
+          #final-cta .cta-primary-button,
+          #final-cta .cta-secondary-button {
+            font-size: 1rem;
+            padding: 0.875rem;
+          }
+        }
+
+        /* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+
+        /* Réduction des animations pour utilisateurs sensibles */
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+          }
+
+          #final-cta .cta-visual-circle {
+            animation: none;
+          }
+        }
+
+        /* Amélioration du contraste pour les textes */
+        @media (prefers-contrast: high) {
+          
+          #final-cta .final-cta-subtitle {
+            color: white;
+          }
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+          #final-cta {
+            background: white !important;
+            color: black !important;
+            box-shadow: none !important;
+          }
+
+          #final-cta .cta-visual-circle{
+            display: none;
+          }
+
+          #final-cta .final-cta-actions a {
+            color: #007BFF !important;
+            text-decoration: underline !important;
+          }
+        }
+
+        /* ===== PERFORMANCE OPTIMIZATIONS ===== */
+        
+        /* GPU acceleration pour les animations */
+        #final-cta .cta-visual-circle {
+          will-change: transform;
+          transform: translateZ(0);
+        }

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Encodage universel -->
+    <meta charset="UTF-8" />
+
+    <!-- Favicon (remplace vite.svg par ton logo personnalisé si possible) -->
+    <link rel="icon" href="./src/assets/Images/rufus.webp" type="image/x-icon" />
+
+    <!-- Vue responsive mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Titre SEO-friendly -->
+    <title>Rufus Akande — Développeur Web Freelance</title>
+
+    <!-- Meta Description (moins de 160 caractères, persuasive, orientée client) -->
+    <meta
+      name="description"
+      content="J'aide les entrepreneurs et indépendants à développer leurs activités et générer des revenus en ligne graçe à des sites web performants et orientés conversion."
+    />
+
+    <!-- Auteur -->
+    <meta name="author" content="Rufus Akande" />
+
+    <!-- Langue du document -->
+    <meta http-equiv="Content-Language" content="fr" />
+
+    <!-- Open Graph (pour partage sur les réseaux sociaux) -->
+    <meta property="og:title" content="Rufus Akande — Développeur Web Freelance" />
+    <meta property="og:description" content="J'aide les entrepreneurs et indépendants à développer leurs activités et générer des revenus en ligne graçe à des sites web performants et orientés conversion." />
+    <meta property="og:image" content="/og-image.jpg" /> <!-- à remplacer par ton image -->
+    <meta property="og:url" content="https://rufusakande.github.io/rufus-akande" /> <!-- à adapter -->
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Rufus Akande — Développeur Web Freelance" />
+    <meta name="twitter:description" content="J'aide les entrepreneurs et indépendants à développer leurs activités et générer des revenus en ligne graçe à des sites web performants et orientés conversion." />
+    <meta name="twitter:image" content="/og-image.jpg" />
+
+    <!-- Canonical URL (évite le contenu dupliqué) -->
+        <link rel="canonical" href="https://rufusakande.github.io/rufus-akande" /> <!-- à adapter -->
+
+    <!-- Préchargement des polices si custom -->
+    <!-- <link rel="preload" href="/fonts/ma-police.woff2" as="font" type="font/woff2" crossorigin="anonymous"> -->
+
+    <!-- Feuille de style principale -->
+    <link rel="stylesheet" href="src/assets/CSS/StyleGeneral.css" />
+
+    <!-- SPA GitHub Pages Script -->
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+             return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

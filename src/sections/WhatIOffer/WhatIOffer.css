@@ -1,0 +1,297 @@
+#what-i-offer {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #F5F7FA 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+#what-i-offer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #007BFF, transparent);
+  opacity: 0.5;
+}
+
+#what-i-offer .what-i-offer__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#what-i-offer .what-i-offer__header {
+  text-align: center;
+  margin-bottom: 80px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#what-i-offer.animate .what-i-offer__header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#what-i-offer .what-i-offer__title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #1E2A38;
+  margin-bottom: 24px;
+  position: relative;
+  display: inline-block;
+}
+
+#what-i-offer .what-i-offer__title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #007BFF, #E4B31A);
+  border-radius: 2px;
+}
+
+#what-i-offer .what-i-offer__subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: #4A4A4A;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+#what-i-offer .what-i-offer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+#what-i-offer .what-i-offer__card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(30, 42, 56, 0.08);
+  border: 2px solid transparent;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  transform: translateY(50px);
+  overflow: hidden;
+}
+
+#what-i-offer.animate .what-i-offer__card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#what-i-offer .what-i-offer__card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 60px rgba(0, 123, 255, 0.15);
+  border-color: #007BFF;
+}
+
+#what-i-offer .what-i-offer__card:focus {
+  outline: 3px solid #007BFF;
+  outline-offset: 4px;
+}
+
+#what-i-offer .what-i-offer__card-overlay {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.05), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+#what-i-offer .what-i-offer__card:hover .what-i-offer__card-overlay {
+  left: 100%;
+}
+
+#what-i-offer .what-i-offer__card-icon {
+  color: #007BFF;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+#what-i-offer .what-i-offer__card:hover .what-i-offer__card-icon {
+  color: #E4B31A;
+  transform: scale(1.1);
+}
+
+#what-i-offer .what-i-offer__card-content {
+  position: relative;
+  z-index: 2;
+}
+
+#what-i-offer .what-i-offer__card-title {
+  font-size: clamp(1.3rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  color: #1E2A38;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+#what-i-offer .what-i-offer__card-description {
+  color: #4A4A4A;
+  line-height: 1.6;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+}
+
+#what-i-offer .what-i-offer__cta {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+}
+
+#what-i-offer.animate .what-i-offer__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#what-i-offer .what-i-offer__btn {
+  background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+  color: white;
+  border: none;
+  padding: 18px 36px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+#what-i-offer .what-i-offer__btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+#what-i-offer .what-i-offer__btn:hover::before {
+  left: 100%;
+}
+
+#what-i-offer .what-i-offer__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0, 123, 255, 0.4);
+}
+
+#what-i-offer .what-i-offer__btn:focus {
+  outline: 3px solid #E4B31A;
+  outline-offset: 4px;
+}
+
+#what-i-offer .what-i-offer__btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #what-i-offer {
+    padding: 80px 0;
+  }
+  
+  #what-i-offer .what-i-offer__container {
+    padding: 0 16px;
+  }
+  
+  #what-i-offer .what-i-offer__grid {
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+  
+  #what-i-offer .what-i-offer__card {
+    padding: 30px 24px;
+  }
+  
+  #what-i-offer .what-i-offer__header {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  #what-i-offer {
+    padding: 60px 0;
+  }
+  
+  #what-i-offer .what-i-offer__container {
+    padding: 0 12px;
+  }
+  
+  #what-i-offer .what-i-offer__grid {
+    gap: 24px;
+  }
+  
+  #what-i-offer .what-i-offer__card {
+    padding: 24px 20px;
+  }
+  
+  #what-i-offer .what-i-offer__btn {
+    padding: 16px 32px;
+    font-size: 1rem;
+  }
+}
+
+/* Montres connectées */
+@media (max-width: 320px) {
+  #what-i-offer {
+    padding: 40px 0;
+  }
+  
+  #what-i-offer .what-i-offer__container {
+    padding: 0 8px;
+  }
+  
+  #what-i-offer .what-i-offer__grid {
+    gap: 20px;
+  }
+  
+  #what-i-offer .what-i-offer__card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  
+  #what-i-offer .what-i-offer__card-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+  
+  #what-i-offer .what-i-offer__btn {
+    padding: 14px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animations et transitions optimisées pour la performance */
+@media (prefers-reduced-motion: reduce) {
+  #what-i-offer .what-i-offer__card,
+  #what-i-offer .what-i-offer__header,
+  #what-i-offer .what-i-offer__cta {
+    transition: none;
+    animation: none;
+  }
+  
+  #what-i-offer .what-i-offer__card:hover {
+    transform: none;
+  }
+}

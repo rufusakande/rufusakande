@@ -1,0 +1,734 @@
+/* MonParcours.css - Section Mon Parcours */
+
+#MonParcours {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #f3f6fa 0%, #ffffff 50%, #f3f6fa 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+#MonParcours::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(2, 6, 183, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(60, 68, 233, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+#MonParcours .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* === EN-TÊTE DE SECTION === */
+#MonParcours .section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+#MonParcours .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(2, 6, 183, 0.1);
+  color: #0206b7;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(2, 6, 183, 0.2);
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+#MonParcours .badge.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#MonParcours .section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s ease 0.2s;
+}
+
+#MonParcours .section-title.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#MonParcours .section-title .highlight {
+  background: linear-gradient(135deg, #0206b7 0%, #3c44e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#MonParcours .section-subtitle {
+  font-size: 1.25rem;
+  color: #4b5563;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s ease 0.4s;
+}
+
+#MonParcours .section-subtitle.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* === NAVIGATION PAR ONGLETS === */
+#MonParcours .tabs-navigation {
+  margin-bottom: 3rem;
+}
+
+#MonParcours .tabs-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(2, 6, 183, 0.1);
+  border: 1px solid rgba(2, 6, 183, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s ease 0.3s;
+}
+
+#MonParcours .tabs-container.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#MonParcours .tab-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: #4b5563;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#MonParcours .tab-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #0206b7, #3c44e9);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+#MonParcours .tab-button:hover::before,
+#MonParcours .tab-button.active::before {
+  left: 0;
+}
+
+#MonParcours .tab-button:hover,
+#MonParcours .tab-button.active {
+  color: white;
+  transform: translateY(-2px);
+}
+
+#MonParcours .tab-button:focus {
+  outline: 2px solid #0206b7;
+  outline-offset: 2px;
+}
+
+/* === CONTENU DES ONGLETS === */
+#MonParcours .tabs-content {
+  min-height: 600px;
+}
+
+/* === TIMELINE (EXPÉRIENCE) === */
+#MonParcours .timeline-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#MonParcours .timeline {
+  position: relative;
+}
+
+#MonParcours .timeline::before {
+  content: '';
+  position: absolute;
+  left: 2rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #0206b7, #3c44e9, #dce3ed);
+}
+
+#MonParcours .timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  transform: translateX(-50px);
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+#MonParcours .timeline-item.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+#MonParcours .timeline-item:nth-child(even) .timeline-content {
+  animation-delay: 0.2s;
+}
+
+#MonParcours .timeline-marker {
+  position: relative;
+  flex-shrink: 0;
+}
+
+#MonParcours .timeline-dot {
+  width: 4rem;
+  height: 4rem;
+  background: white;
+  border: 3px solid #0206b7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0206b7;
+  box-shadow: 0 4px 15px rgba(2, 6, 183, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+#MonParcours .timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 4rem;
+  width: 2px;
+  height: calc(100% + 3rem);
+  background: #dce3ed;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+#MonParcours .timeline-item:last-child .timeline-line {
+  display: none;
+}
+
+#MonParcours .timeline-content {
+  flex: 1;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 30px rgba(2, 6, 183, 0.1);
+  border: 1px solid rgba(2, 6, 183, 0.1);
+  position: relative;
+}
+
+#MonParcours .timeline-content::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 2rem;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid white;
+}
+
+#MonParcours .timeline-header {
+  margin-bottom: 1.5rem;
+}
+
+#MonParcours .timeline-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+#MonParcours .timeline-year,
+#MonParcours .timeline-location {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: #0206b7;
+  font-weight: 600;
+}
+
+#MonParcours .timeline-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+#MonParcours .timeline-company {
+  color: #4b5563;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+#MonParcours .timeline-description {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+#MonParcours .timeline-achievements {
+  margin-bottom: 1.5rem;
+}
+
+#MonParcours .timeline-achievements h4 {
+  color: #1f2937;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+#MonParcours .timeline-achievements ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#MonParcours .timeline-achievements li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+#MonParcours .timeline-achievements li svg {
+  color: #facc15;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+#MonParcours .timeline-tech {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#MonParcours .tech-label {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 0.875rem;
+}
+
+#MonParcours .tech-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+#MonParcours .tech-tag {
+  background: rgba(2, 6, 183, 0.1);
+  color: #0206b7;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(2, 6, 183, 0.2);
+}
+
+/* === FORMATION === */
+#MonParcours .formation-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#MonParcours .formation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+}
+
+#MonParcours .formation-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 30px rgba(2, 6, 183, 0.1);
+  border: 1px solid rgba(2, 6, 183, 0.1);
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#MonParcours .formation-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0206b7, #3c44e9, #facc15);
+}
+
+#MonParcours .formation-card.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#MonParcours .formation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(2, 6, 183, 0.15);
+}
+
+#MonParcours .formation-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+#MonParcours .formation-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #0206b7, #3c44e9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+#MonParcours .formation-meta {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+#MonParcours .formation-year {
+  font-weight: 700;
+  color: #0206b7;
+  font-size: 1.125rem;
+}
+
+#MonParcours .formation-location {
+  font-size: 0.875rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+#MonParcours .formation-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+#MonParcours .formation-institution {
+  color: #0206b7;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+#MonParcours .formation-description {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+#MonParcours .formation-skills h4 {
+  color: #1f2937;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+#MonParcours .skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#MonParcours .skill-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(2, 6, 183, 0.05);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  color: #4b5563;
+  font-size: 0.875rem;
+  border: 1px solid rgba(2, 6, 183, 0.1);
+}
+
+#MonParcours .skill-badge svg {
+  color: #0206b7;
+}
+
+/* === VALEURS === */
+#MonParcours .valeurs-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#MonParcours .valeurs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+#MonParcours .valeur-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(2, 6, 183, 0.1);
+  border: 1px solid rgba(2, 6, 183, 0.1);
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#MonParcours .valeur-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(2, 6, 183, 0.02) 0%, rgba(60, 68, 233, 0.02) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#MonParcours .valeur-card:hover::before {
+  opacity: 1;
+}
+
+#MonParcours .valeur-card.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#MonParcours .valeur-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(2, 6, 183, 0.15);
+}
+
+#MonParcours .valeur-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, #0206b7, #3c44e9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+#MonParcours .valeur-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+#MonParcours .valeur-description {
+  color: #4b5563;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* === CTA DE FIN DE SECTION === */
+#MonParcours .section-cta {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+#MonParcours .cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+#MonParcours .cta-content.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#MonParcours .cta-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+#MonParcours .cta-description {
+  font-size: 1.125rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+#MonParcours .cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#MonParcours .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #0206b7, #3c44e9);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(2, 6, 183, 0.3);
+}
+
+#MonParcours .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(2, 6, 183, 0.4);
+}
+
+#MonParcours .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  color: #0206b7;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid #0206b7;
+  transition: all 0.3s ease;
+}
+
+#MonParcours .btn-secondary:hover {
+  background: #0206b7;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  #MonParcours {
+    padding: 4rem 0;
+  }
+
+  #MonParcours .container {
+    padding: 0 1rem;
+  }
+
+  #MonParcours .section-title {
+    font-size: 2rem;
+  }
+
+  #MonParcours .section-subtitle {
+    font-size: 1rem;
+  }
+
+  #MonParcours .tabs-container {
+    flex-direction: column;
+    max-width: 300px;
+  }
+
+  #MonParcours .timeline::before {
+    left: 1rem;
+  }
+
+  #MonParcours .timeline-item {
+    flex-direction: column;
+    gap: 1rem;
+    margin-left: 2rem;
+  }
+
+  #MonParcours .timeline-marker {
+    position: absolute;
+    left: -2rem;
+    top: 0;
+  }
+
+  #MonParcours .timeline-dot {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  #MonParcours .timeline-content::before {
+    display: none;
+  }
+
+  #MonParcours .formation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #MonParcours .formation-card,
+  #MonParcours .valeur-card {
+    margin: 0 auto;
+    max-width: 400px;
+  }
+
+  #MonParcours .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #MonParcours .btn-primary,
+  #MonParcours .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}

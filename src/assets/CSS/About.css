@@ -1,0 +1,786 @@
+/* ==========================================================================
+   ABOUT PAGE STYLES - about.css
+   Structure: #AboutPage > sections > contenus
+   ========================================================================== */
+
+/* Variables CSS pour la cohérence */
+:root {
+  /* Couleurs principales */
+  --primary-blue: #0206b7;
+  --background-light: #f3f6fa;
+  --hover-blue: #3c44e9;
+  --light-gray: #dce3ed;
+  --text-gray: #4b5563;
+  --dark-text: #1f2937;
+  --accent-yellow: #facc15;
+  
+  /* Typographie */
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  
+  /* Espacements */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
+  
+  /* Breakpoints */
+  --mobile-small: 320px;
+  --mobile: 480px;
+  --tablet: 768px;
+  --desktop: 1024px;
+  --desktop-large: 1200px;
+}
+
+/* Base du composant About */
+#AboutPage {
+  min-height: 100vh;
+  background: var(--background-light);
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  color: var(--text-gray);
+}
+
+/* Container générique */
+#AboutPage .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+
+#AboutPage .hero-section {
+  padding: var(--spacing-xxl) 0;
+  background: linear-gradient(135deg, var(--background-light) 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+#AboutPage .hero-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 200px;
+  height: 200px;
+  background: var(--primary-blue);
+  opacity: 0.05;
+  border-radius: 50%;
+  animation: float 20s ease-in-out infinite;
+}
+
+#AboutPage .hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+#AboutPage .hero-text .hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--dark-text);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.2;
+}
+
+#AboutPage .hero-text .hero-title .highlight {
+  color: var(--primary-blue);
+  position: relative;
+}
+
+#AboutPage .hero-text .hero-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent-yellow);
+  border-radius: 2px;
+  animation: slideIn 1s ease-out;
+}
+
+#AboutPage .hero-text .hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-gray);
+  margin-bottom: var(--spacing-lg);
+  font-weight: var(--font-weight-regular);
+}
+
+#AboutPage .hero-stats {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+#AboutPage .hero-stats .stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing-md);
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(2, 6, 183, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#AboutPage .hero-stats .stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(2, 6, 183, 0.15);
+}
+
+#AboutPage .hero-stats .stat-item .stat-icon {
+  color: var(--primary-blue);
+  width: 24px;
+  height: 24px;
+  margin-bottom: var(--spacing-xs);
+}
+
+#AboutPage .hero-stats .stat-item .stat-number {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--dark-text);
+}
+
+#AboutPage .hero-stats .stat-item .stat-label {
+  font-size: 0.9rem;
+  color: var(--text-gray);
+}
+
+#AboutPage .hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#AboutPage .hero-image .image-placeholder {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--hover-blue));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba(2, 6, 183, 0.3);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+#AboutPage .hero-image .image-placeholder svg {
+  color: white;
+  width: 120px;
+  height: 120px;
+}
+
+/* ==========================================================================
+   JOURNEY SECTION
+   ========================================================================== */
+
+#AboutPage .journey-section {
+  padding: var(--spacing-xxl) 0;
+  background: #ffffff;
+}
+
+#AboutPage .section-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+#AboutPage .section-header .section-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--dark-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+#AboutPage .section-header .title-underline {
+  width: 60px;
+  height: 4px;
+  background: var(--primary-blue);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+#AboutPage .journey-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+#AboutPage .journey-text .journey-intro {
+  font-size: 1.2rem;
+  color: var(--dark-text);
+  margin-bottom: var(--spacing-md);
+}
+
+#AboutPage .journey-text .journey-description {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+}
+
+#AboutPage .journey-text .journey-experience {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+}
+
+#AboutPage .journey-text .emphasis {
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-medium);
+}
+
+#AboutPage .journey-visual .experience-timeline {
+  position: relative;
+  padding-left: var(--spacing-lg);
+}
+
+#AboutPage .journey-visual .experience-timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--light-gray);
+}
+
+#AboutPage .journey-visual .timeline-item {
+  position: relative;
+  margin-bottom: var(--spacing-lg);
+  padding-left: var(--spacing-lg);
+}
+
+#AboutPage .journey-visual .timeline-item .timeline-dot {
+  position: absolute;
+  left: -6px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  background: var(--primary-blue);
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 2px var(--light-gray);
+}
+
+#AboutPage .journey-visual .timeline-item .timeline-content h4 {
+  font-weight: var(--font-weight-bold);
+  color: var(--dark-text);
+  margin-bottom: var(--spacing-xs);
+}
+
+#AboutPage .journey-visual .timeline-item .timeline-content p {
+  color: var(--text-gray);
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   VISION SECTION
+   ========================================================================== */
+
+#AboutPage .vision-section {
+  padding: var(--spacing-xxl) 0;
+  background: var(--background-light);
+}
+
+#AboutPage .vision-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+#AboutPage .vision-text .section-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--dark-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+#AboutPage .vision-text .title-underline {
+  width: 60px;
+  height: 4px;
+  background: var(--primary-blue);
+  margin-bottom: var(--spacing-lg);
+  border-radius: 2px;
+}
+
+#AboutPage .vision-text .vision-quote {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md);
+  background: #ffffff;
+  border-left: 4px solid var(--primary-blue);
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+#AboutPage .vision-text .vision-quote blockquote {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--dark-text);
+  margin: 0;
+  font-weight: var(--font-weight-medium);
+}
+
+#AboutPage .vision-text .vision-description,
+#AboutPage .vision-text .vision-approach {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.7;
+}
+
+#AboutPage .vision-values {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+#AboutPage .vision-values .value-card {
+  background: #ffffff;
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(2, 6, 183, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#AboutPage .vision-values .value-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(2, 6, 183, 0.12);
+}
+
+#AboutPage .vision-values .value-card .value-icon {
+  color: var(--primary-blue);
+  width: 32px;
+  height: 32px;
+  margin-bottom: var(--spacing-sm);
+}
+
+#AboutPage .vision-values .value-card h4 {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--dark-text);
+  margin-bottom: var(--spacing-xs);
+}
+
+#AboutPage .vision-values .value-card p {
+  color: var(--text-gray);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   STACK SECTION
+   ========================================================================== */
+
+#AboutPage .stack-section {
+  padding: var(--spacing-xxl) 0;
+  background: #ffffff;
+}
+
+#AboutPage .stack-section .section-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-gray);
+  margin-top: var(--spacing-md);
+}
+
+#AboutPage .stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+#AboutPage .stack-grid .stack-card {
+  background: #ffffff;
+  padding: var(--spacing-lg);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(2, 6, 183, 0.08);
+  border: 1px solid var(--light-gray);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: slideInUp 0.6s ease forwards;
+}
+
+#AboutPage .stack-grid .stack-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(2, 6, 183, 0.15);
+}
+
+#AboutPage .stack-grid .stack-card .stack-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+#AboutPage .stack-grid .stack-card .stack-header .stack-icon {
+  color: var(--primary-blue);
+  width: 28px;
+  height: 28px;
+  margin-right: var(--spacing-sm);
+}
+
+#AboutPage .stack-grid .stack-card .stack-header .stack-title {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--dark-text);
+}
+
+#AboutPage .stack-grid .stack-card .stack-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+#AboutPage .stack-grid .stack-card .stack-techs .tech-tag {
+  background: var(--background-light);
+  color: var(--primary-blue);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  border: 1px solid var(--light-gray);
+  transition: all 0.3s ease;
+}
+
+#AboutPage .stack-grid .stack-card .stack-techs .tech-tag:hover {
+  background: var(--primary-blue);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   CTA SECTION
+   ========================================================================== */
+
+#AboutPage .cta-section {
+  padding: var(--spacing-xxl) 0;
+  background: linear-gradient(135deg, var(--primary-blue), var(--hover-blue));
+  text-align: center;
+}
+
+#AboutPage .cta-section .cta-content .cta-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  color: #ffffff;
+  margin-bottom: var(--spacing-md);
+}
+
+#AboutPage .cta-section .cta-content .cta-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#AboutPage .cta-section .cta-content .cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: var(--accent-yellow);
+  color: var(--dark-text);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(250, 204, 21, 0.3);
+}
+
+#AboutPage .cta-section .cta-content .cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(250, 204, 21, 0.4);
+  background: #fbbf24;
+}
+
+#AboutPage .cta-section .cta-content .cta-button .button-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+#AboutPage .cta-section .cta-content .cta-button:hover .button-icon {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation d'entrée des sections */
+#AboutPage .animate-in {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* Tablettes */
+@media (max-width: 768px) {
+  #AboutPage .hero-content,
+  #AboutPage .journey-content,
+  #AboutPage .vision-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  #AboutPage .hero-image {
+    order: -1;
+  }
+  
+  #AboutPage .hero-image .image-placeholder {
+    width: 200px;
+    height: 200px;
+  }
+  
+  #AboutPage .hero-stats {
+    justify-content: center;
+  }
+  
+  #AboutPage .stack-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 480px) {
+  #AboutPage .container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  #AboutPage .hero-section,
+  #AboutPage .journey-section,
+  #AboutPage .vision-section,
+  #AboutPage .stack-section,
+  #AboutPage .cta-section {
+    padding: var(--spacing-lg) 0;
+  }
+  
+  #AboutPage .hero-stats {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  #AboutPage .hero-stats .stat-item {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  #AboutPage .vision-values {
+    gap: var(--spacing-sm);
+  }
+  
+  #AboutPage .stack-grid {
+    gap: var(--spacing-sm);
+  }
+}
+
+/* Très petits écrans (montres connectées) */
+@media (max-width: 320px) {
+  #AboutPage .hero-text .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  #AboutPage .hero-text .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  #AboutPage .container {
+    padding: 0 var(--spacing-xs);
+  }
+  
+  #AboutPage .hero-image .image-placeholder {
+    width: 150px;
+    height: 150px;
+  }
+  
+  #AboutPage .hero-image .image-placeholder svg {
+    width: 80px;
+    height: 80px;
+  }
+  
+  #AboutPage .section-header .section-title {
+    font-size: 1.5rem;
+  }
+  
+  #AboutPage .vision-text .vision-quote blockquote {
+    font-size: 1rem;
+  }
+  
+  #AboutPage .cta-section .cta-content .cta-title {
+    font-size: 1.5rem;
+  }
+  
+  #AboutPage .cta-section .cta-content .cta-subtitle {
+    font-size: 1rem;
+  }
+  
+  #AboutPage .cta-section .cta-content .cta-button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1rem;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITÉ
+   ========================================================================== */
+
+/* Focus visible pour la navigation clavier */
+#AboutPage *:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+#AboutPage .cta-button:focus {
+  outline: 2px solid var(--accent-yellow);
+  outline-offset: 2px;
+}
+
+/* Réduction des animations pour les utilisateurs qui préfèrent moins de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  #AboutPage * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  #AboutPage .hero-image .image-placeholder {
+    animation: none;
+  }
+  
+  #AboutPage .hero-section::before {
+    animation: none;
+  }
+}
+
+/* Contraste élevé pour les utilisateurs qui en ont besoin */
+@media (prefers-contrast: high) {
+  #AboutPage {
+    --primary-blue: #000080;
+    --text-gray: #000000;
+    --light-gray: #cccccc;
+  }
+  
+  #AboutPage .hero-stats .stat-item,
+  #AboutPage .vision-values .value-card,
+  #AboutPage .stack-grid .stack-card {
+    border: 2px solid var(--primary-blue);
+  }
+}
+
+/* ==========================================================================
+   ÉTATS DE CHARGEMENT ET PERFORMANCES
+   ========================================================================== */
+
+/* Optimisation pour les images lazy-loaded */
+#AboutPage .hero-image .image-placeholder {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Skeleton loading pour les cartes */
+#AboutPage .loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  #AboutPage {
+    background: white !important;
+    color: black !important;
+  }
+  
+  #AboutPage .hero-section,
+  #AboutPage .vision-section,
+  #AboutPage .cta-section {
+    background: white !important;
+  }
+  
+  #AboutPage .hero-image .image-placeholder,
+  #AboutPage .vision-values .value-card,
+  #AboutPage .stack-grid .stack-card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  #AboutPage .cta-section .cta-content .cta-button {
+    background: white !important;
+    color: black !important;
+    border: 2px solid black !important;
+  }
+}

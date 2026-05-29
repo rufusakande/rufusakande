@@ -1,0 +1,394 @@
+#AboutHero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f3f6fa 0%, #dce3ed 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 130px 20px 50px;
+}
+
+#AboutHero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(2, 6, 183, 0.05) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+    z-index: 0;
+}
+
+#AboutHero .container {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+#AboutHero .content {
+    transform: translateX(-50px);
+    opacity: 0;
+    animation: slideInLeft 1s ease-out 0.3s forwards;
+}
+
+#AboutHero .visual {
+    transform: translateY(50px);
+    opacity: 0;
+    animation: slideInUp 1s ease-out 0.6s forwards;
+    position: relative;
+}
+
+#AboutHero .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(2, 6, 183, 0.1);
+    color: #0206b7;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(2, 6, 183, 0.2);
+}
+
+#AboutHero .title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #1f2937;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #1f2937 0%, #0206b7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#AboutHero .subtitle {
+    font-size: 1.25rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+#AboutHero .highlight {
+    color: #0206b7;
+    font-weight: 600;
+}
+
+#AboutHero .stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+#AboutHero .stat {
+    text-align: center;
+}
+
+#AboutHero .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0206b7;
+    line-height: 1;
+}
+
+#AboutHero .stat-label {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-top: 0.25rem;
+}
+
+#AboutHero .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+#AboutHero .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #0206b7;
+    color: white;
+    padding: 0.875rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(2, 6, 183, 0.3);
+}
+
+#AboutHero .btn-primary:hover {
+    background: #3c44e9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(2, 6, 183, 0.4);
+}
+
+#AboutHero .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: #0206b7;
+    padding: 0.875rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid #0206b7;
+    cursor: pointer;
+}
+
+#AboutHero .btn-secondary:hover {
+    background: #0206b7;
+    color: white;
+    transform: translateY(-2px);
+}
+
+#AboutHero .profile-card {
+    background: white;
+    border-radius: 2rem;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(2, 6, 183, 0.1);
+    border: 1px solid rgba(2, 6, 183, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+#AboutHero .profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0206b7, #3c44e9, #facc15);
+}
+
+#AboutHero .profile-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0206b7, #3c44e9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#AboutHero .profile-image img {
+    width: 100%;
+    height: 100%;
+}
+
+#AboutHero .profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+#AboutHero .profile-role {
+    color: #0206b7;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#AboutHero .skills-showcase {
+    margin-bottom: 1.5rem;
+}
+
+#AboutHero .skills-title {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+#AboutHero .skill-display {
+    background: rgba(2, 6, 183, 0.1);
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-weight: 600;
+    color: #0206b7;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+#AboutHero .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#AboutHero .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(2, 6, 183, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0206b7;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#AboutHero .social-link:hover {
+    background: #0206b7;
+    color: white;
+    transform: translateY(-2px);
+}
+
+#AboutHero .floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#AboutHero .floating-element {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(2, 6, 183, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+#AboutHero .floating-element:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+#AboutHero .floating-element:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+#AboutHero .floating-element:nth-child(3) {
+    width: 40px;
+    height: 40px;
+    top: 10%;
+    right: 30%;
+    animation-delay: 4s;
+}
+
+@keyframes slideInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #AboutHero .container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    #AboutHero .title {
+        font-size: 2.5rem;
+    }
+
+    #AboutHero .stats {
+        justify-content: center;
+    }
+
+    #AboutHero .cta-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #AboutHero {
+        padding: 130px 20px 50px;
+    }
+
+    #AboutHero .title {
+        font-size: 2rem;
+    }
+
+    #AboutHero .subtitle {
+        font-size: 1.125rem;
+    }
+
+    #AboutHero .stats {
+        gap: 1rem;
+    }
+
+    #AboutHero .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #AboutHero .btn-primary,
+    #AboutHero .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 320px) {
+    #AboutHero .profile-card {
+        padding: 1rem;
+    }
+
+    #AboutHero .profile-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    #AboutHero .profile-image svg {
+        width: 40px;
+        height: 40px;
+    }
+}

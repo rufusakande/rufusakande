@@ -1,0 +1,628 @@
+/* ContactInfoSection.css */
+/* Toutes les règles CSS commencent par #ContactInfoSection pour éviter les conflits */
+
+/* Variables CSS pour la cohérence */
+#ContactInfoSection {
+  --primary-color: #0206b7;
+  --bg-color: #f3f6fa;
+  --hover-color: #3c44e9;
+  --light-gray: #dce3ed;
+  --text-gray: #4b5563;
+  --dark-text: #1f2937;
+  --accent-yellow: #facc15;
+  --white: #ffffff;
+  --success-green: #10b981;
+  
+  /* Variables d'animation */
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Variables de timing */
+  --duration-fast: 0.2s;
+  --duration-normal: 0.4s;
+  --duration-slow: 0.6s;
+  
+  /* Variables d'ombres */
+  --shadow-sm: 0 2px 4px rgba(2, 6, 183, 0.1);
+  --shadow-md: 0 4px 12px rgba(2, 6, 183, 0.15);
+  --shadow-lg: 0 8px 25px rgba(2, 6, 183, 0.2);
+}
+
+/* Section principale */
+#ContactInfoSection {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, var(--white) 0%, var(--bg-color) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Container */
+#ContactInfoSection .container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* En-tête de section */
+#ContactInfoSection .section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all var(--duration-slow) var(--transition-smooth);
+}
+
+#ContactInfoSection.visible .section-header {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#ContactInfoSection .section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--dark-text);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+#ContactInfoSection .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--hover-color));
+  border-radius: 2px;
+}
+
+#ContactInfoSection .section-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-gray);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Méthodes de contact */
+#ContactInfoSection .contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+#ContactInfoSection .contact-method {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 20px;
+  border: 2px solid var(--light-gray);
+  position: relative;
+  overflow: hidden;
+  
+  /* Animations */
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all var(--duration-normal) var(--transition-smooth);
+  
+  /* Optimisation GPU */
+  will-change: transform, box-shadow;
+}
+
+#ContactInfoSection.visible .contact-method {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#ContactInfoSection .contact-method::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary-color), var(--hover-color));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--duration-normal) var(--transition-smooth);
+}
+
+#ContactInfoSection .contact-method:hover::before {
+  transform: scaleY(1);
+}
+
+#ContactInfoSection .contact-method:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(2, 6, 183, 0.3);
+}
+
+/* Icônes des méthodes */
+#ContactInfoSection .contact-method .method-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+#ContactInfoSection .contact-method.email .method-icon {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: white;
+}
+
+#ContactInfoSection .contact-method.location .method-icon {
+  background: linear-gradient(135deg, var(--success-green), #34d399);
+  color: white;
+}
+
+#ContactInfoSection .contact-method .method-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left var(--duration-normal) var(--transition-smooth);
+}
+
+#ContactInfoSection .contact-method:hover .method-icon::before {
+  left: 100%;
+}
+
+/* Contenu des méthodes */
+#ContactInfoSection .contact-method .method-content {
+  flex: 1;
+}
+
+#ContactInfoSection .contact-method .method-header {
+  margin-bottom: 1rem;
+}
+
+#ContactInfoSection .contact-method .method-label {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: 0.5rem;
+}
+
+#ContactInfoSection .contact-method .method-description {
+  font-size: 0.875rem;
+  color: var(--text-gray);
+  font-weight: 500;
+}
+
+#ContactInfoSection .contact-method .method-value-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#ContactInfoSection .contact-method .method-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  /* Transition */
+  transition: all var(--duration-fast) var(--transition-smooth);
+}
+
+#ContactInfoSection .contact-method .method-value:hover {
+  color: var(--hover-color);
+  transform: translateX(5px);
+}
+
+#ContactInfoSection .contact-method .method-value:focus-visible {
+  outline: 2px solid var(--accent-yellow);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+#ContactInfoSection .contact-method .external-icon {
+  opacity: 0.7;
+  transition: all var(--duration-fast) var(--transition-smooth);
+}
+
+#ContactInfoSection .contact-method .method-value:hover .external-icon {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+/* Bouton de copie */
+#ContactInfoSection .contact-method .copy-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid var(--light-gray);
+  background: var(--white);
+  color: var(--text-gray);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Transitions */
+  transition: all var(--duration-fast) var(--transition-smooth);
+}
+
+#ContactInfoSection .contact-method .copy-button:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+#ContactInfoSection .contact-method .copy-button:focus-visible {
+  outline: 2px solid var(--accent-yellow);
+  outline-offset: 2px;
+}
+
+#ContactInfoSection .contact-method .copy-button .check-icon {
+  color: var(--success-green);
+  animation: checkmark 0.3s var(--transition-bounce);
+}
+
+@keyframes checkmark {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Section des plateformes */
+#ContactInfoSection .platforms-section {
+  margin-bottom: 4rem;
+}
+
+#ContactInfoSection .platforms-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  text-align: center;
+  margin-bottom: 3rem;
+  
+  /* Animation */
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all var(--duration-normal) var(--transition-smooth) 0.3s;
+}
+
+#ContactInfoSection.visible .platforms-title {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Grille des plateformes */
+#ContactInfoSection .platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+#ContactInfoSection .platform-card {
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 20px;
+  border: 2px solid var(--light-gray);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  
+  /* Animations */
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all var(--duration-normal) var(--transition-smooth);
+  
+  /* Optimisation GPU */
+  will-change: transform, box-shadow;
+}
+
+#ContactInfoSection.visible .platform-card {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#ContactInfoSection .platform-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--hover-color));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-normal) var(--transition-smooth);
+}
+
+#ContactInfoSection .platform-card:hover::before {
+  transform: scaleX(1);
+}
+
+#ContactInfoSection .platform-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(2, 6, 183, 0.3);
+}
+
+#ContactInfoSection .platform-card:focus-visible {
+  outline: 3px solid var(--accent-yellow);
+  outline-offset: 3px;
+}
+
+/* En-tête de carte plateforme */
+#ContactInfoSection .platform-card .platform-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+#ContactInfoSection .platform-card .platform-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+#ContactInfoSection .platform-card.linkedin .platform-icon {
+  background: linear-gradient(135deg, #0077b5, #00a0dc);
+}
+
+#ContactInfoSection .platform-card.comeup .platform-icon {
+  background: linear-gradient(135deg, #ff6b35, #ff8e53);
+}
+
+#ContactInfoSection .platform-card.upwork .platform-icon {
+  background: linear-gradient(135deg, #14a800, #6fbb3c);
+}
+
+#ContactInfoSection .platform-card .platform-badge {
+  background: rgba(2, 6, 183, 0.1);
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  border: 1px solid rgba(2, 6, 183, 0.2);
+}
+
+/* Contenu de la carte */
+#ContactInfoSection .platform-card .platform-content {
+  margin-bottom: 1.5rem;
+}
+
+#ContactInfoSection .platform-card .platform-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: 0.5rem;
+}
+
+#ContactInfoSection .platform-card .platform-description {
+  color: var(--text-gray);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Action de la carte */
+#ContactInfoSection .platform-card .platform-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+#ContactInfoSection .platform-card:hover .platform-action {
+  color: var(--hover-color);
+}
+
+/* Notice de disponibilité */
+#ContactInfoSection .availability-notice {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(2, 6, 183, 0.05), rgba(60, 68, 233, 0.05));
+  border-radius: 20px;
+  border: 2px solid rgba(2, 6, 183, 0.1);
+  
+  /* Animation */
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all var(--duration-slow) var(--transition-smooth) 0.5s;
+}
+
+#ContactInfoSection.visible .availability-notice {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#ContactInfoSection .availability-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+#ContactInfoSection .status-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--success-green);
+  border-radius: 50%;
+  position: relative;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+#ContactInfoSection .status-dot::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--success-green);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0.1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+#ContactInfoSection .status-text {
+  font-weight: 600;
+  color: var(--success-green);
+  font-size: 1rem;
+}
+
+#ContactInfoSection .availability-text {
+  color: var(--text-gray);
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Responsive Design - Mobile First */
+
+/* Très petits écrans (montres connectées) */
+@media (max-width: 320px) {
+  #ContactInfoSection {
+    padding: 3rem 0;
+  }
+  
+  #ContactInfoSection .container {
+    padding: 0 1rem;
+  }
+  
+  #ContactInfoSection .contact-methods {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  #ContactInfoSection .contact-method {
+    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  #ContactInfoSection .platforms-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  #ContactInfoSection .platform-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Petits écrans (smartphones) */
+@media (max-width: 640px) {
+  #ContactInfoSection .section-header {
+    margin-bottom: 3rem;
+  }
+  
+  #ContactInfoSection .contact-methods {
+    grid-template-columns: 1fr;
+    margin-bottom: 3rem;
+  }
+  
+  #ContactInfoSection .contact-method .method-value-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  #ContactInfoSection .platforms-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablettes */
+@media (min-width: 641px) and (max-width: 1024px) {
+  #ContactInfoSection .contact-methods {
+    grid-template-columns: 1fr;
+  }
+  
+  #ContactInfoSection .platforms-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Grands écrans */
+@media (min-width: 1025px) {
+  #ContactInfoSection .container {
+    padding: 0 2rem;
+  }
+  
+  #ContactInfoSection .platforms-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Optimisations pour les animations */
+@media (prefers-reduced-motion: reduce) {
+  #ContactInfoSection * {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01s !important;
+  }
+  
+  #ContactInfoSection .status-dot,
+  #ContactInfoSection .status-dot::before {
+    animation: none;
+  }
+}
+
+/* Mode sombre (préparation future) */
+@media (prefers-color-scheme: dark) {
+  #ContactInfoSection {
+    /* Variables pour le mode sombre peuvent être ajoutées ici */
+  }
+}
+
+/* Optimisations pour l'impression */
+@media print {
+  #ContactInfoSection {
+    background: white;
+    padding: 2rem 0;
+  }
+  
+  #ContactInfoSection .availability-notice {
+    background: white;
+    border: 1px solid #ccc;
+  }
+  
+  #ContactInfoSection .status-dot,
+  #ContactInfoSection .status-dot::before {
+    animation: none;
+  }
+}

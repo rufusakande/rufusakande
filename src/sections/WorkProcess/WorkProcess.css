@@ -1,0 +1,280 @@
+/* ===== WORK PROCESS SECTION ===== */
+        #work-process {
+          padding: 6rem 1rem;
+          background: linear-gradient(135deg, #F5F7FA 0%, #ffffff 100%);
+          position: relative;
+          overflow: hidden;
+        }
+
+        #work-process::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, #007BFF, transparent);
+        }
+
+        #work-process .work-process-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 2;
+        }
+
+        #work-process .work-process-header {
+          text-align: center;
+          margin-bottom: 4rem;
+        }
+
+        #work-process .work-process-title {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: #1E2A38;
+          margin-bottom: 1rem;
+          line-height: 1.2;
+        }
+
+        #work-process .work-process-subtitle {
+          font-size: 1.25rem;
+          color: #4A4A4A;
+          max-width: 600px;
+          margin: 0 auto;
+          line-height: 1.6;
+        }
+
+        #work-process .work-process-steps {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+          margin-top: 3rem;
+        }
+
+        #work-process .work-process-step {
+          background: white;
+          padding: 2rem;
+          border-radius: 1rem;
+          box-shadow: 0 4px 20px rgba(30, 42, 56, 0.08);
+          position: relative;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+        #work-process .work-process-step:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 30px rgba(0, 123, 255, 0.15);
+          border-color: #007BFF;
+        }
+
+        #work-process .work-process-step.animate-slide-up {
+          opacity: 1;
+          transform: translateY(0);
+          transition: all 0.6s ease;
+        }
+
+        #work-process .work-process-step-number {
+          position: absolute;
+          top: -15px;
+          left: 2rem;
+          width: 30px;
+          height: 30px;
+          background: linear-gradient(135deg, #007BFF, #0056b3);
+          color: white;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          font-size: 0.875rem;
+        }
+
+        #work-process .work-process-step-icon {
+          margin-bottom: 1.5rem;
+          color: #007BFF;
+        }
+
+        #work-process .work-process-step-icon .process-icon {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+
+        #work-process .work-process-step-title {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #1E2A38;
+          margin-bottom: 1rem;
+        }
+
+        #work-process .work-process-step-description {
+          color: #4A4A4A;
+          line-height: 1.6;
+          font-size: 1rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          33% { transform: translateY(-20px) rotate(120deg); }
+          66% { transform: translateY(10px) rotate(240deg); }
+        }
+
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.8s ease forwards;
+        }
+
+        .animate-fade-in-delay {
+          animation: fadeIn 0.8s ease 0.2s forwards;
+          opacity: 0;
+        }
+
+        .animate-slide-up {
+          animation: slideUp 0.6s ease forwards;
+        }
+
+        .animate-bounce-in {
+          animation: bounceIn 0.8s ease forwards;
+        }
+
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceIn {
+          0% { opacity: 0; transform: scale(0.3); }
+          50% { transform: scale(1.05); }
+          70% { transform: scale(0.9); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        
+        /* Tablettes */
+        @media (max-width: 768px) {
+          #work-process{
+            padding: 4rem 1rem;
+          }
+
+          #work-process .work-process-title{
+            font-size: 2rem;
+          }
+
+          #work-process .work-process-steps {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
+        }
+
+        /* Mobiles */
+        @media (max-width: 480px) {
+          #work-process{
+            padding: 3rem 1rem;
+          }
+
+          #work-process .work-process-title{
+            font-size: 1.75rem;
+          }
+
+          #work-process .work-process-step {
+            padding: 1.5rem;
+          }
+        }
+
+        /* Montres connectées */
+        @media (max-width: 320px) {
+          #work-process{
+            padding: 2rem 0.5rem;
+          }
+
+          #work-process .work-process-title{
+            font-size: 1.5rem;
+          }
+
+          #work-process .work-process-step {
+            padding: 1rem;
+          }
+        }
+
+        /* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+        
+        /* Focus states pour navigation clavier */
+        #work-process .work-process-step:focus-within {
+          outline: 2px solid #007BFF;
+          outline-offset: 2px;
+        }
+
+        /* Réduction des animations pour utilisateurs sensibles */
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+          }
+
+          #work-process .work-process-step {
+            opacity: 1;
+            transform: none;
+          }
+        }
+
+        /* Amélioration du contraste pour les textes */
+        @media (prefers-contrast: high) {
+          #work-process .work-process-step {
+            border: 2px solid #1E2A38;
+          }
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+          #work-process{
+            background: white !important;
+            color: black !important;
+            box-shadow: none !important;
+          }
+
+          #work-process .work-process-step{
+            break-inside: avoid;
+            box-shadow: none !important;
+            border: 1px solid #ccc;
+          }
+
+        }
+
+        /* ===== PERFORMANCE OPTIMIZATIONS ===== */
+        
+        /* GPU acceleration pour les animations */
+        #work-process .work-process-step{
+          will-change: transform;
+          transform: translateZ(0);
+        }
+
+        /* Lazy loading des animations */
+        #work-process .work-process-step:not(.animate-slide-up){
+          transform: translateZ(0);
+        }

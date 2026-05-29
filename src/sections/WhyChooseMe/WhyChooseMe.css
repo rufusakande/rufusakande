@@ -1,0 +1,386 @@
+#why-choose-me {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #1E2A38 0%, #0056b3 100%);
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+#why-choose-me .why-choose-me__card-description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+}
+
+#why-choose-me .why-choose-me__testimonial {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s;
+}
+
+#why-choose-me.animate .why-choose-me__testimonial {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#why-choose-me .why-choose-me__quote {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+#why-choose-me .why-choose-me__quote::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 30px;
+  font-size: 6rem;
+  color: #007BFF;
+  opacity: 0.3;
+  font-family: serif;
+  line-height: 1;
+}
+
+#why-choose-me .why-choose-me__quote-text {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 24px;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+#why-choose-me .why-choose-me__quote-author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+#why-choose-me .why-choose-me__quote-author strong {
+  color: #E4B31A;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+#why-choose-me .why-choose-me__quote-author span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #why-choose-me {
+    padding: 80px 0;
+  }
+  
+  #why-choose-me .why-choose-me__container {
+    padding: 0 16px;
+  }
+  
+  #why-choose-me .why-choose-me__grid {
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  
+  #why-choose-me .why-choose-me__card {
+    padding: 30px 24px;
+  }
+  
+  #why-choose-me .why-choose-me__header {
+    margin-bottom: 60px;
+  }
+  
+  #why-choose-me .why-choose-me__quote {
+    padding: 30px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  #why-choose-me {
+    padding: 60px 0;
+  }
+  
+  #why-choose-me .why-choose-me__container {
+    padding: 0 12px;
+  }
+  
+  #why-choose-me .why-choose-me__grid {
+    gap: 24px;
+    grid-template-columns: 1fr;
+  }
+  
+  #why-choose-me .why-choose-me__card {
+    padding: 24px 20px;
+  }
+  
+  #why-choose-me .why-choose-me__quote {
+    padding: 24px 20px;
+  }
+  
+  #why-choose-me .why-choose-me__quote::before {
+    font-size: 4rem;
+    top: -5px;
+    left: 20px;
+  }
+}
+
+/* Montres connectées */
+@media (max-width: 320px) {
+  #why-choose-me {
+    padding: 40px 0;
+  }
+  
+  #why-choose-me .why-choose-me__container {
+    padding: 0 8px;
+  }
+  
+  #why-choose-me .why-choose-me__grid {
+    gap: 20px;
+  }
+  
+  #why-choose-me .why-choose-me__card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  
+  #why-choose-me .why-choose-me__card-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+  
+  #why-choose-me .why-choose-me__quote {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  
+  #why-choose-me .why-choose-me__quote::before {
+    font-size: 3rem;
+    left: 16px;
+  }
+}
+
+/* Variables CSS pour les couleurs des cartes */
+#why-choose-me .why-choose-me__card:nth-child(1) {
+  --card-color: #007BFF;
+  --card-color-rgb: 0, 123, 255;
+}
+
+#why-choose-me .why-choose-me__card:nth-child(2) {
+  --card-color: #E4B31A;
+  --card-color-rgb: 228, 179, 26;
+}
+
+#why-choose-me .why-choose-me__card:nth-child(3) {
+  --card-color: #007BFF;
+  --card-color-rgb: 0, 123, 255;
+}
+
+/* Animations et transitions optimisées pour la performance */
+@media (prefers-reduced-motion: reduce) {
+  #why-choose-me .why-choose-me__card,
+  #why-choose-me .why-choose-me__header,
+  #why-choose-me .why-choose-me__testimonial {
+    transition: none;
+    animation: none;
+  }
+  
+  #why-choose-me .why-choose-me__card:hover {
+    transform: none;
+  }
+  
+  #why-choose-me .why-choose-me__counter {
+    transition: none;
+  }
+}background-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(0, 123, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(228, 179, 26, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(0, 123, 255, 0.05) 0%, transparent 70%);
+  z-index: 0;
+}
+
+#why-choose-me .why-choose-me__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+#why-choose-me .why-choose-me__header {
+  text-align: center;
+  margin-bottom: 80px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#why-choose-me.animate .why-choose-me__header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#why-choose-me .why-choose-me__title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 24px;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(135deg, #ffffff 0%, #E4B31A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#why-choose-me .why-choose-me__title::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #007BFF, #E4B31A);
+  border-radius: 2px;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+}
+
+#why-choose-me .why-choose-me__subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+#why-choose-me .why-choose-me__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+#why-choose-me .why-choose-me__card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 40px 30px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  transform: translateY(60px) scale(0.9);
+  overflow: hidden;
+}
+
+#why-choose-me.animate .why-choose-me__card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+#why-choose-me .why-choose-me__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--card-color, #007BFF), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 24px;
+  z-index: -1;
+}
+
+#why-choose-me .why-choose-me__card:hover::before {
+  opacity: 0.1;
+}
+
+#why-choose-me .why-choose-me__card:hover {
+  transform: translateY(-15px) scale(1.02);
+  border-color: var(--card-color, #007BFF);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px var(--card-color, #007BFF),
+    0 0 40px rgba(var(--card-color-rgb, 0, 123, 255), 0.3);
+}
+
+#why-choose-me .why-choose-me__card:focus {
+  outline: 3px solid #E4B31A;
+  outline-offset: 4px;
+}
+
+#why-choose-me .why-choose-me__card-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--card-color, #007BFF), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+#why-choose-me .why-choose-me__card:hover .why-choose-me__card-glow {
+  opacity: 0.1;
+}
+
+#why-choose-me .why-choose-me__card-icon {
+  color: var(--card-color, #007BFF);
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+#why-choose-me .why-choose-me__card:hover .why-choose-me__card-icon {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 0 20px var(--card-color, #007BFF));
+}
+
+#why-choose-me .why-choose-me__card-number {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+#why-choose-me .why-choose-me__counter {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--card-color, #007BFF);
+  text-shadow: 0 0 30px rgba(var(--card-color-rgb, 0, 123, 255), 0.5);
+}
+
+#why-choose-me .why-choose-me__suffix {
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  color: #E4B31A;
+}
+
+#why-choose-me .why-choose-me__card-title {
+  font-size: clamp(1.3rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: white;
+}
