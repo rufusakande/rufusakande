@@ -74,7 +74,7 @@ function App() {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router basename="/rufusakande">
+    <Router basename={import.meta.env.PROD ? "/rufusakande" : "/"}>
       <App/>
     </Router>
   </StrictMode>,
