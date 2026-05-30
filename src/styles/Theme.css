@@ -8,6 +8,23 @@
 
 @import "tailwindcss";
 
+/* ─── TAILWIND v4 THEME TOKENS ──────────────────────────────── */
+@theme {
+  --color-brand-blue:        #0B2A6B;
+  --color-brand-blue-deep:   #061a45;
+  --color-brand-blue-accent: #2563EB;
+  --color-brand-blue-soft:   #DBEAFE;
+  --color-brand-night:       #050a1f;
+  --color-brand-night-2:     #0a1230;
+  --color-brand-gold:        #D4A437;
+  --color-brand-gold-light:  #F2C94C;
+  --color-brand-gold-deep:   #B8862A;
+  --color-ink:               #0A1530;
+  --color-ink-body:          #475569;
+  --font-display:            'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-serif:              'Instrument Serif', serif;
+}
+
 /* ─── TOKENS ─────────────────────────────────────────────────── */
 :root {
   /* Brand */
@@ -209,7 +226,12 @@ html body #header .mobile-cta-button {
 html body #header .dropdown-menu { border: 1px solid var(--brand-line); border-radius: var(--radius-md) !important; box-shadow: var(--shadow-card) !important; }
 html body #header .dropdown-menu li a:hover { background: var(--brand-blue-soft) !important; color: var(--brand-blue) !important; }
 
-/* ─── HERO ──────────────────────────────────────────────────── */
+/* ─── HERO (Tailwind-first, on neutralise les overrides globaux) ── */
+#home-hero, #home-hero * { color: inherit; }
+#home-hero h1 { color: #fff; }
+#home-hero a { color: inherit; text-decoration: none; }
+
+/* ─── HERO (legacy) ─────────────────────────────────────────── */
 html body #hero.hero {
   background: var(--gradient-hero) !important;
   padding-top: 140px !important;

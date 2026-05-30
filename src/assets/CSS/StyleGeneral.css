@@ -1,6 +1,4 @@
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
+/* Reset minimal — la réinitialisation padding/margin globale a été retirée
+   car elle entrait en conflit avec les utilitaires Tailwind (pt-*, p-*, m-*).
+   box-sizing + margins par défaut sont gérés par Tailwind Preflight. */
+html { scroll-behavior: smooth; }
