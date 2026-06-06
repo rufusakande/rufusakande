@@ -1,165 +1,71 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Mail, 
-  MapPin, 
-  Linkedin, 
-  ExternalLink, 
-  Copy, 
-  Check,
-  Globe,
-  Star
-} from 'lucide-react';
-import './ContactInfoSection.css';
+import { useState, useEffect, useRef } from 'react';
+import { Mail, MapPin, Linkedin, ExternalLink, Copy, Check, Globe, Star } from 'lucide-react';
+
+const contactMethods = [
+  { type: 'email', label: 'Email professionnel', value: 'akanderufus51@gmail.com', href: 'mailto:akanderufus51@gmail.com', icon: Mail, description: 'Réponse garantie sous 24h', copyable: true },
+  { type: 'location', label: 'Localisation', value: 'Parakou, Bénin', href: 'https://maps.google.com/?q=Parakou,+Benin', icon: MapPin, description: 'Disponible pour projets locaux & internationaux', copyable: false },
+];
+
+const platforms = [
+  { name: 'LinkedIn', description: 'Réseau professionnel', href: 'https://www.linkedin.com/in/rufus-akande-freelance-developpeur-web/', icon: Linkedin, badge: 'Profil vérifié' },
+  { name: 'Comeup', description: 'Marketplace française', href: 'https://comeup.com/fr/@akande-rufus', icon: Globe, badge: 'Nouveau vendeur' },
+  { name: 'Upwork', description: 'Plateforme internationale', href: 'https://www.upwork.com/freelancers/~01f235722f1321a00d?mp_source=share', icon: Star, badge: '100% satisfaction' },
+];
 
 const ContactInfoSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [copiedEmail, setCopiedEmail] = useState(false);
-  const sectionRef = useRef(null);
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    // Intersection Observer pour l'animation au scroll
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2, rootMargin: '-50px' }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    const obs = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), { threshold: 0.15 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
   }, []);
 
-  const handleEmailCopy = async () => {
+  const copy = async () => {
     try {
       await navigator.clipboard.writeText('akanderufus51@gmail.com');
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2000);
-    } catch (err) {
-      // Fallback pour les navigateurs qui ne supportent pas clipboard API
-      console.log('Clipboard API non supportée');
-    }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {}
   };
 
-  const contactMethods = [
-    {
-      type: 'email',
-      label: 'Email professionnel',
-      value: 'akanderufus51@gmail.com',
-      href: 'mailto:akanderufus51@gmail.com',
-      icon: Mail,
-      description: 'Réponse garantie sous 24h',
-      color: 'email',
-      copyable: true
-    },
-    {
-      type: 'location',
-      label: 'Localisation',
-      value: 'Parakou, Bénin',
-      href: 'https://maps.google.com/?q=Parakou,+Benin',
-      icon: MapPin,
-      description: 'Disponible pour projets locaux & internationaux',
-      color: 'location',
-      copyable: false
-    }
-  ];
-
-  const platforms = [
-    {
-      name: 'LinkedIn',
-      description: 'Réseau professionnel',
-      href: 'https://www.linkedin.com/in/rufus-akande-freelance-developpeur-web/',
-      icon: Linkedin,
-      color: 'linkedin',
-      badge: 'Profil vérifié'
-    },
-    {
-      name: 'Comeup',
-      description: 'Marketplace française',
-      href: 'https://comeup.com/fr/@akande-rufus',
-      icon: Globe,
-      color: 'comeup',
-      badge: 'Nouveau vendeur'
-    },
-    {
-      name: 'Upwork',
-      description: 'Plateforme internationale',
-      href: 'https://www.upwork.com/freelancers/~01f235722f1321a00d?mp_source=share',
-      icon: Star,
-      color: 'upwork',
-      badge: '100% satisfaction'
-    }
-  ];
-
   return (
-    <section 
-      id="ContactInfoSection" 
-      ref={sectionRef}
-      className={`contact-info ${isVisible ? 'visible' : ''}`}
-      role="region"
-      aria-labelledby="contact-info-title"
-    >
-      <div className="container">
-        {/* En-tête de section */}
-        <div className="section-header">
-          <h2 id="contact-info-title" className="section-title">
-            Restons connectés
+    <section ref={ref} className="relative py-20 bg-white">
+      <div className="max-w-[1100px] mx-auto px-6">
+        <div className="text-center max-w-xl mx-auto">
+          <h2 className="text-[clamp(2rem,4vw,2.75rem)] font-bold text-ink tracking-[-0.02em]">
+            Restons <span className="serif-italic text-gradient-gold">connectés</span>
           </h2>
-          <p className="section-subtitle">
-            Choisissez le canal qui vous convient le mieux pour échanger
-          </p>
+          <p className="mt-4 text-ink-body text-lg">Choisissez le canal qui vous convient le mieux pour échanger</p>
         </div>
 
-        {/* Informations de contact directes */}
-        <div className="contact-methods">
-          {contactMethods.map((method, index) => {
-            const IconComponent = method.icon;
+        <div className="mt-12 grid md:grid-cols-2 gap-5">
+          {contactMethods.map((m, i) => {
+            const Icon = m.icon;
             return (
-              <div 
-                key={method.type}
-                className={`contact-method ${method.color}`}
-                style={{ animationDelay: `${index * 0.1}s` }}
+              <div
+                key={m.type}
+                className={`bg-white rounded-3xl p-6 border border-line shadow-card hover:shadow-floating transition-all flex items-start gap-4 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                style={{ transitionDelay: `${i * 80}ms`, transitionDuration: '500ms' }}
               >
-                <div className="method-icon">
-                  <IconComponent size={28} aria-hidden="true" />
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-blue-accent text-white flex items-center justify-center shadow-blue-glow flex-shrink-0">
+                  <Icon size={24} />
                 </div>
-                
-                <div className="method-content">
-                  <div className="method-header">
-                    <h3 className="method-label">{method.label}</h3>
-                    <span className="method-description">{method.description}</span>
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    <h3 className="font-bold text-ink">{m.label}</h3>
+                    <span className="text-xs text-ink-muted">{m.description}</span>
                   </div>
-                  
-                  <div className="method-value-wrapper">
-                    <a 
-                      href={method.href}
-                      className="method-value"
-                      target={method.type === 'location' ? '_blank' : '_self'}
-                      rel={method.type === 'location' ? 'noopener noreferrer' : undefined}
-                      aria-label={`${method.label}: ${method.value}`}
-                    >
-                      {method.value}
-                      {method.type === 'location' && (
-                        <ExternalLink size={16} className="external-icon" aria-hidden="true" />
-                      )}
+                  <div className="mt-2 flex items-center gap-2">
+                    <a href={m.href} target={m.type === 'location' ? '_blank' : '_self'} rel={m.type === 'location' ? 'noopener noreferrer' : undefined} className="text-brand-blue font-semibold hover:text-brand-blue-accent inline-flex items-center gap-1">
+                      {m.value}
+                      {m.type === 'location' && <ExternalLink size={14} />}
                     </a>
-                    
-                    {method.copyable && (
-                      <button 
-                        onClick={handleEmailCopy}
-                        className="copy-button"
-                        aria-label="Copier l'adresse email"
-                        title="Copier l'email"
-                      >
-                        {copiedEmail ? (
-                          <Check size={16} className="check-icon" />
-                        ) : (
-                          <Copy size={16} />
-                        )}
+                    {m.copyable && (
+                      <button onClick={copy} aria-label="Copier l'email" className="w-8 h-8 rounded-full bg-brand-blue-soft text-brand-blue hover:bg-brand-blue hover:text-white inline-flex items-center justify-center transition-colors">
+                        {copied ? <Check size={14} /> : <Copy size={14} />}
                       </button>
                     )}
                   </div>
@@ -169,42 +75,30 @@ const ContactInfoSection = () => {
           })}
         </div>
 
-        {/* Plateformes professionnelles */}
-        <div className="platforms-section">
-          <h3 className="platforms-title">
-            Mes plateformes professionnelles
-          </h3>
-          
-          <div className="platforms-grid">
-            {platforms.map((platform, index) => {
-              const IconComponent = platform.icon;
+        <div className="mt-16">
+          <h3 className="text-center text-xl font-bold text-ink">Mes plateformes professionnelles</h3>
+          <div className="mt-8 grid sm:grid-cols-3 gap-5">
+            {platforms.map((p, i) => {
+              const Icon = p.icon;
               return (
                 <a
-                  key={platform.name}
-                  href={platform.href}
+                  key={p.name}
+                  href={p.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`platform-card ${platform.color}`}
-                  style={{ animationDelay: `${(index + 2) * 0.1}s` }}
-                  aria-label={`Visiter mon profil ${platform.name} - ${platform.description}`}
+                  className={`group bg-white rounded-3xl p-6 border border-line shadow-card hover:shadow-floating hover:-translate-y-1 transition-all duration-500 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                  style={{ transitionDelay: `${(i + 2) * 80}ms` }}
                 >
-                  <div className="platform-header">
-                    <div className="platform-icon">
-                      <IconComponent size={24} aria-hidden="true" />
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-gold-light to-brand-gold text-[#1a1108] flex items-center justify-center shadow-gold-glow">
+                      <Icon size={22} />
                     </div>
-                    <div className="platform-badge">
-                      {platform.badge}
-                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full bg-brand-blue-soft text-brand-blue">{p.badge}</span>
                   </div>
-                  
-                  <div className="platform-content">
-                    <h4 className="platform-name">{platform.name}</h4>
-                    <p className="platform-description">{platform.description}</p>
-                  </div>
-                  
-                  <div className="platform-action">
-                    <span>Voir le profil</span>
-                    <ExternalLink size={16} aria-hidden="true" />
+                  <h4 className="mt-4 font-bold text-ink">{p.name}</h4>
+                  <p className="text-sm text-ink-body">{p.description}</p>
+                  <div className="mt-4 inline-flex items-center gap-1.5 text-brand-blue text-sm font-semibold group-hover:gap-2.5 transition-all">
+                    Voir le profil <ExternalLink size={14} />
                   </div>
                 </a>
               );
@@ -212,15 +106,16 @@ const ContactInfoSection = () => {
           </div>
         </div>
 
-        {/* Message de disponibilité */}
-        <div className="availability-notice">
-          <div className="availability-indicator">
-            <div className="status-dot" aria-hidden="true"></div>
-            <span className="status-text">Disponible pour nouveaux projets</span>
+        <div className="mt-16 max-w-2xl mx-auto rounded-3xl p-6 bg-gradient-to-br from-brand-blue-deep to-brand-blue text-white shadow-floating text-center">
+          <div className="inline-flex items-center gap-2 text-sm font-semibold text-brand-gold-light">
+            <span className="relative flex w-2.5 h-2.5">
+              <span className="absolute inset-0 rounded-full bg-brand-gold-light opacity-60 animate-ping" />
+              <span className="relative w-2.5 h-2.5 rounded-full bg-brand-gold-light" />
+            </span>
+            Disponible pour nouveaux projets
           </div>
-          <p className="availability-text">
-            Actuellement disponible pour de nouveaux projets. 
-            N'hésitez pas à me contacter pour discuter de vos besoins !
+          <p className="mt-3 text-white/80 text-sm">
+            Actuellement disponible pour de nouveaux projets. N'hésitez pas à me contacter pour discuter de vos besoins !
           </p>
         </div>
       </div>
