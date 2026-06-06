@@ -1,98 +1,84 @@
 import { Instagram, Linkedin, Mail, MapPin, Phone, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import './Footer.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const socialClass =
+    'w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/15 text-white/80 hover:bg-brand-gold hover:text-[#1a1108] hover:border-brand-gold transition-all';
+
   return (
-    <footer id="footer" className="footer" role="contentinfo">
-      <div className="footer-wave">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
-          <path
-            fill="#f5f7fa"
-            fillOpacity="1"
-            d="M0,32L60,42.7C120,53,240,75,360,74.7C480,75,600,53,720,48C840,43,960,53,1080,58.7C1200,64,1320,64,1380,64L1440,64L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
-          ></path>
-        </svg>
-      </div>
-      
-      <div className="footer-content">
-        <div className="footer-container">
-          <div className="footer-grid">
-            {/* Brand Column */}
-            <div className="footer-column brand-column">
-              <Link to="/" className="footer-logo" aria-label="Rufus Akande - Accueil">
-                <span className="footer-logo-text">Rufus<span className="footer-logo-highlight">Akande</span></span>
-              </Link>
-              <p className="footer-tagline">
-                Des solutions web sur mesure pour vous démarquer et développer votre présence en ligne.
-              </p>
-              <div className="social-links">
-                <a href="https://www.linkedin.com/in/rufus-akande-freelance-developpeur-web/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-link">
-                  <Linkedin size={20} />
-                </a>
-                <a href="https://github.com/rufusakande" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-link">
-                  <Github size={20} />
-                </a>
-                <a href="https://www.instagram.com/rufusakande_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-link">
-                  <Instagram size={20} />
-                </a>
-              </div>
-            </div>
-
-            {/* Navigation Column */}
-            <div className="footer-column">
-              <h3 className="footer-heading">Navigation</h3>
-              <ul className="footer-links">
-                <li><Link to="/">Accueil</Link></li>
-                <li><Link to="/apropos">À propos</Link></li>
-                <li><Link to="/services">Services</Link></li>
-                <li><Link to="/realisations">Réalisations</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
-              </ul>
-            </div>
-
-            {/* Services Column */}
-            <div className="footer-column">
-              <h3 className="footer-heading">Services</h3>
-              <ul className="footer-links">
-                <li><Link to="/services" onClick={(e) => { e.preventDefault(); window.location.hash = 'vitrine'; }}>Sites Vitrines</Link></li>
-                <li><Link to="/services" onClick={(e) => { e.preventDefault(); window.location.hash = 'ecommerce'; }}>E-commerce</Link></li>
-                <li><Link to="/services" onClick={(e) => { e.preventDefault(); window.location.hash = 'webapp'; }}>Applications Web</Link></li>
-                <li><Link to="/services" onClick={(e) => { e.preventDefault(); window.location.hash = 'conseil'; }}>Conseil & Accompagnement</Link></li>
-              </ul>
-            </div>
-
-            {/* Contact Column */}
-            <div className="footer-column contact-column">
-              <h3 className="footer-heading">Contact</h3>
-              <ul className="contact-info">
-                <li>
-                  <Mail size={16} className="contact-icon" />
-                  <a href="mailto:rufus.dev@mail.com">akanderufus51@gmail.com</a>
-                </li>
-                <li>
-                  <Phone size={16} className="contact-icon" />
-                  <a href="https://wa.me/22951080983">+229 01 51 08 09 83</a>
-                </li>
-                <li>
-                  <MapPin size={16} className="contact-icon" />
-                  <span>Parakou, Bénin</span>
-                </li>
-              </ul>
+    <footer className="relative bg-gradient-to-b from-brand-blue-deep to-[#03081f] text-white pt-20 pb-8 mt-20" role="contentinfo">
+      {/* halo gold */}
+      <div
+        className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-40"
+        style={{ background: 'radial-gradient(ellipse at center, rgba(212,164,55,0.35), transparent 60%)', filter: 'blur(40px)' }}
+      />
+      <div className="relative max-w-[1240px] mx-auto px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* Brand */}
+          <div className="lg:col-span-1">
+            <Link to="/" aria-label="Rufus Akande - Accueil">
+              <span className="text-2xl font-extrabold tracking-[-0.02em]">
+                Rufus
+                <span className="bg-gradient-to-r from-brand-gold-light to-brand-gold bg-clip-text text-transparent">
+                  Akande
+                </span>
+              </span>
+            </Link>
+            <p className="mt-4 text-sm text-white/65 leading-relaxed">
+              Des solutions web sur mesure pour vous démarquer et développer votre présence en ligne.
+            </p>
+            <div className="mt-5 flex gap-3">
+              <a href="https://www.linkedin.com/in/rufus-akande-freelance-developpeur-web/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={socialClass}><Linkedin size={18} /></a>
+              <a href="https://github.com/rufusakande" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={socialClass}><Github size={18} /></a>
+              <a href="https://www.instagram.com/rufusakande_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={socialClass}><Instagram size={18} /></a>
             </div>
           </div>
 
-          <div className="footer-bottom">
-            <div className="copyright">
-              &copy; {currentYear} Rufus Akande. Tous droits réservés.
-            </div>
-            <div className="legal-links">
-              <a href="/">Accueil</a>
-              <span className="separator">|</span>
-              <a href="/">Politique de confidentialité</a>
-            </div>
+          <div>
+            <h3 className="text-sm uppercase tracking-[0.2em] text-brand-gold-light font-semibold mb-4">Navigation</h3>
+            <ul className="space-y-2.5 text-sm">
+              {[['/', 'Accueil'], ['/apropos', 'À propos'], ['/services', 'Services'], ['/realisations', 'Réalisations'], ['/contact', 'Contact']].map(([to, label]) => (
+                <li key={to}><Link to={to} className="text-white/70 hover:text-brand-gold-light transition-colors">{label}</Link></li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm uppercase tracking-[0.2em] text-brand-gold-light font-semibold mb-4">Services</h3>
+            <ul className="space-y-2.5 text-sm">
+              {['Sites Vitrines', 'E-commerce', 'Applications Web', 'Conseil & Accompagnement'].map((s) => (
+                <li key={s}><Link to="/services" className="text-white/70 hover:text-brand-gold-light transition-colors">{s}</Link></li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm uppercase tracking-[0.2em] text-brand-gold-light font-semibold mb-4">Contact</h3>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-3 text-white/70">
+                <Mail size={16} className="text-brand-gold-light" />
+                <a href="mailto:akanderufus51@gmail.com" className="hover:text-white">akanderufus51@gmail.com</a>
+              </li>
+              <li className="flex items-center gap-3 text-white/70">
+                <Phone size={16} className="text-brand-gold-light" />
+                <a href="https://wa.me/22951080983" className="hover:text-white">+229 01 51 08 09 83</a>
+              </li>
+              <li className="flex items-center gap-3 text-white/70">
+                <MapPin size={16} className="text-brand-gold-light" />
+                <span>Parakou, Bénin</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/55">
+          <div>&copy; {currentYear} Rufus Akande. Tous droits réservés.</div>
+          <div className="flex items-center gap-3">
+            <a href="/" className="hover:text-white">Accueil</a>
+            <span className="opacity-50">|</span>
+            <a href="/" className="hover:text-white">Politique de confidentialité</a>
           </div>
         </div>
       </div>

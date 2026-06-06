@@ -1,7 +1,6 @@
- import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import './Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,123 +8,155 @@ const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    if (!isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    document.body.style.overflow = !isMenuOpen ? 'hidden' : 'auto';
   };
 
-  const toggleDropdown = (index) => {
+  const toggleDropdown = (index) =>
     setActiveDropdown(activeDropdown === index ? null : index);
-  };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
     document.body.style.overflow = 'auto';
   };
 
-  return (
-    <header id="header" className={`header ${scrolled ? 'scrolled' : ''}`} role="banner">
-      <div className="header-container">
-        <div className="logo-container">
-          <Link to="/" className="logo" aria-label="Rufus Akande - Accueil">
-            <span className="logo-text">Rufus<span className="logo-highlight">Akande</span></span>
-          </Link>
-        </div>
+  const navLinkClass =
+    'text-ink-body hover:text-brand-blue font-medium text-[15px] transition-colors relative after:absolute after:left-2 after:right-2 after:-bottom-1 after:h-[2px] after:bg-brand-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-center';
 
-        <nav className={`nav-desktop ${isMenuOpen ? 'show' : ''}`} role="navigation" aria-label="Menu principal">
-          <ul className="nav-list">
-            <li className="nav-item">
-              <Link to="/" className="nav-link active">Accueil</Link>
-            </li>
-            <li className="nav-item dropdown">
-              <button 
-                className="nav-link dropdown-toggle" 
-                onClick={() => toggleDropdown(0)}
-                aria-expanded={activeDropdown === 0}
-                aria-haspopup="true"
-              >
-                Services <ChevronDown size={16} />
-              </button>
-              <ul className={`dropdown-menu ${activeDropdown === 0 ? 'show' : ''}`}>
-                <li><Link to="/services" >Sites Vitrines</Link></li>
-                <li><Link to="/services" >E-commerce</Link></li>
-                <li><Link to="/services" >Applications Web</Link></li>
-                <li><Link to="/services" >Conseil & Accompagnement</Link></li>
+  return (
+    <header
+      className="fixed top-0 left-0 right-0 z-50 py-4"
+      role="banner"
+    >
+      <div
+        className={`mx-auto max-w-[1240px] px-4 sm:px-6 flex items-center justify-between gap-4 rounded-full border border-line backdrop-blur-xl transition-all duration-300 ${
+          scrolled ? 'bg-white/95 shadow-floating' : 'bg-white/80 shadow-card'
+        }`}
+        style={{ padding: '0.6rem 0.7rem 0.6rem 1.6rem' }}
+      >
+        {/* Logo */}
+        <Link to="/" className="flex items-center" aria-label="Rufus Akande - Accueil">
+          <span className="text-xl font-extrabold tracking-[-0.02em] text-ink">
+            Rufus
+            <span className="text-gradient-blue">Akande</span>
+          </span>
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="hidden lg:flex items-center gap-7" aria-label="Menu principal">
+          <Link to="/" className={navLinkClass}>Accueil</Link>
+          <div className="relative">
+            <button
+              onClick={() => toggleDropdown(0)}
+              aria-expanded={activeDropdown === 0}
+              className={`${navLinkClass} flex items-center gap-1`}
+            >
+              Services <ChevronDown size={16} />
+            </button>
+            {activeDropdown === 0 && (
+              <ul className="absolute left-0 top-full mt-3 w-56 rounded-2xl border border-line bg-white shadow-card overflow-hidden">
+                {['Sites Vitrines', 'E-commerce', 'Applications Web', 'Conseil & Accompagnement'].map((s) => (
+                  <li key={s}>
+                    <Link
+                      to="/services"
+                      className="block px-4 py-2.5 text-sm text-ink-body hover:bg-brand-blue-soft hover:text-brand-blue transition-colors"
+                      onClick={() => setActiveDropdown(null)}
+                    >
+                      {s}
+                    </Link>
+                  </li>
+                ))}
               </ul>
-            </li>
-            <li className="nav-item">
-              <Link to="/realisations" className="nav-link">Réalisations</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/apropos" className="nav-link">À propos</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/contact" className="nav-link">Contact</Link>
-            </li>
-          </ul>
+            )}
+          </div>
+          <Link to="/realisations" className={navLinkClass}>Réalisations</Link>
+          <Link to="/apropos" className={navLinkClass}>À propos</Link>
+          <Link to="/contact" className={navLinkClass}>Contact</Link>
         </nav>
 
-        <div className="cta-container">
-          <Link to="https://wa.me/22951080983" target="_blank" className="cta-button" aria-label="Me contacter">
+        {/* CTA + burger */}
+        <div className="flex items-center gap-2">
+          <Link
+            to="https://wa.me/22951080983"
+            target="_blank"
+            className="btn-gold premium-shine !py-2.5 !px-5 text-sm hidden sm:inline-flex"
+          >
             Me contacter
           </Link>
-          <button 
-            className="menu-toggle" 
+          <button
+            className="lg:hidden w-10 h-10 inline-flex items-center justify-center rounded-full text-ink hover:bg-brand-blue-soft transition-colors"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
-            aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <div className={`mobile-nav ${isMenuOpen ? 'active' : ''}`}>
-        <div className="mobile-nav-container">
-          <ul className="mobile-nav-list">
-            <li><Link to="/" onClick={closeMenu}>Accueil</Link></li>
-            <li className="mobile-dropdown">
-              <button 
+      {/* Mobile nav */}
+      <div
+        className={`lg:hidden fixed inset-x-0 top-[80px] bottom-0 bg-surface transition-transform duration-300 ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="px-6 py-8 h-full overflow-y-auto">
+          <ul className="space-y-2">
+            {[
+              { to: '/', label: 'Accueil' },
+              { to: '/realisations', label: 'Réalisations' },
+              { to: '/apropos', label: 'À propos' },
+              { to: '/contact', label: 'Contact' },
+            ].map((l) => (
+              <li key={l.to}>
+                <Link
+                  to={l.to}
+                  onClick={closeMenu}
+                  className="block py-3 text-lg font-semibold text-ink border-b border-line"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <button
                 onClick={() => toggleDropdown(1)}
-                aria-expanded={activeDropdown === 1}
+                className="w-full flex items-center justify-between py-3 text-lg font-semibold text-ink border-b border-line"
               >
-                Services <ChevronDown size={16} className={activeDropdown === 1 ? 'rotate' : ''} />
+                Services
+                <ChevronDown size={18} className={activeDropdown === 1 ? 'rotate-180 transition-transform' : 'transition-transform'} />
               </button>
-              <ul className={`mobile-dropdown-menu ${activeDropdown === 1 ? 'show' : ''}`}>
-                <li><Link to="/services" onClick={(e) => { e.preventDefault(); window.location.hash = 'vitrine'; closeMenu(); }}>Sites Vitrines</Link></li>
-                <li><Link to="/services" onClick={(e) => { e.preventDefault(); window.location.hash = 'ecommerce'; closeMenu(); }}>E-commerce</Link></li>
-                <li><Link to="/services" onClick={(e) => { e.preventDefault(); window.location.hash = 'webapp'; closeMenu(); }}>Applications Web</Link></li>
-                <li><Link to="/services" onClick={(e) => { e.preventDefault(); window.location.hash = 'conseil'; closeMenu(); }}>Conseil & Accompagnement</Link></li>
-              </ul>
+              {activeDropdown === 1 && (
+                <ul className="pl-4 py-2 space-y-2">
+                  {['Sites Vitrines', 'E-commerce', 'Applications Web', 'Conseil & Accompagnement'].map((s) => (
+                    <li key={s}>
+                      <Link to="/services" onClick={closeMenu} className="block py-1.5 text-ink-body">{s}</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
-            <li><Link to="/realisations" onClick={closeMenu}>Réalisations</Link></li>
-            <li><Link to="/apropos" onClick={closeMenu}>À propos</Link></li>
-            <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
           </ul>
-          <div className="mobile-contact-info">
-            <p>Besoin d'un site web qui vous démarque ?</p>
-            <Link to="/contact" className="mobile-cta-button" onClick={closeMenu}>Discutons de votre projet</Link>
-            <div className="mobile-contact-details">
-              <a href="mailto:rufus.dev@mail.com">rufus.dev@mail.com</a>
+
+          <div className="mt-10 p-6 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-blue-deep text-white">
+            <p className="text-sm">Besoin d'un site web qui vous démarque ?</p>
+            <Link
+              to="/contact"
+              onClick={closeMenu}
+              className="mt-4 inline-flex btn-gold premium-shine !py-2.5"
+            >
+              Discutons de votre projet
+            </Link>
+            <div className="mt-4 text-sm">
+              <a href="mailto:akanderufus51@gmail.com" className="text-white/90 hover:text-white">
+                akanderufus51@gmail.com
+              </a>
             </div>
           </div>
         </div>

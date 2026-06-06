@@ -1,100 +1,54 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Users, Target, Zap, Star } from 'lucide-react';
-import './ServicesHero.css';
 
 const ServicesHero = () => {
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    const obs = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), { threshold: 0.2 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
   }, []);
 
   return (
-    <section 
-      id="ServicesHero" 
-      ref={sectionRef}
-      className={`services-hero ${isVisible ? 'animate-in' : ''}`}
-      role="banner"
-      aria-labelledby="services-title"
-    >
-      <div className="container">
-        <div className="content">
-          <div className="title-wrapper">
-            <h1 id="services-title" className="main-title">
-              Mes Services
-            </h1>
-            <div className="title-decoration">
-              <span className="decoration-line"></span>
-              <Star className="decoration-icon" aria-hidden="true" />
-              <span className="decoration-line"></span>
-            </div>
-          </div>
+    <section ref={ref} className="relative pt-36 pb-20 bg-gradient-to-b from-white to-surface overflow-hidden">
+      <div className="pointer-events-none absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full opacity-50" style={{ background: 'radial-gradient(circle, rgba(212,164,55,0.18), transparent 60%)', filter: 'blur(50px)' }} />
+      <div className="pointer-events-none absolute top-1/3 -left-32 w-[500px] h-[500px] rounded-full opacity-50" style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.18), transparent 60%)', filter: 'blur(50px)' }} />
 
-          <div className="subtitle-section">
-            <p className="main-subtitle">
-              Mes services s'adressent aux <strong>entrepreneurs</strong>, 
-              <strong> petites entreprises</strong>, <strong>associations</strong> ou 
-              <strong> indépendants</strong> qui veulent un site qui leur ressemble et qui performe.
-            </p>
-          </div>
-
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon">
-                <Users aria-hidden="true" />
-              </div>
-              <h3 className="feature-title">Pour qui ?</h3>
-              <p className="feature-text">
-                Entrepreneurs & indépendants ambitieux
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">
-                <Target aria-hidden="true" />
-              </div>
-              <h3 className="feature-title">Objectif</h3>
-              <p className="feature-text">
-                Sites qui vous ressemblent vraiment
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">
-                <Zap aria-hidden="true" />
-              </div>
-              <h3 className="feature-title">Résultat</h3>
-              <p className="feature-text">
-                Performance & conversions garanties
-              </p>
-            </div>
-          </div>
-
-          <div className="cta-section">
-            <div className="highlight-badge">
-              <span className="badge-text">🚀 Solutions sur-mesure</span>
-            </div>
-          </div>
+      <div className={`relative max-w-4xl mx-auto px-6 text-center transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+        <h1 className="text-[clamp(2.5rem,5vw,4rem)] font-bold text-ink tracking-[-0.02em]">
+          Mes <span className="serif-italic text-gradient-gold">Services</span>
+        </h1>
+        <div className="mt-4 flex items-center justify-center gap-3 text-brand-gold">
+          <span className="h-px w-12 bg-brand-gold/40" />
+          <Star size={16} className="fill-brand-gold" />
+          <span className="h-px w-12 bg-brand-gold/40" />
         </div>
 
-        <div className="background-elements">
-          <div className="bg-circle bg-circle-1"></div>
-          <div className="bg-circle bg-circle-2"></div>
-          <div className="bg-grid"></div>
+        <p className="mt-6 max-w-2xl mx-auto text-lg text-ink-body leading-relaxed">
+          Mes services s'adressent aux <strong className="text-ink">entrepreneurs</strong>, <strong className="text-ink">petites entreprises</strong>, <strong className="text-ink">associations</strong> ou <strong className="text-ink">indépendants</strong> qui veulent un site qui leur ressemble et qui performe.
+        </p>
+
+        <div className="mt-12 grid sm:grid-cols-3 gap-5">
+          {[
+            { icon: Users, title: 'Pour qui ?', text: 'Entrepreneurs & indépendants ambitieux' },
+            { icon: Target, title: 'Objectif', text: 'Sites qui vous ressemblent vraiment' },
+            { icon: Zap, title: 'Résultat', text: 'Performance & conversions garanties' },
+          ].map((f) => (
+            <div key={f.title} className="bg-white rounded-3xl p-6 border border-line shadow-card text-left">
+              <div className="w-12 h-12 rounded-xl bg-brand-blue-soft text-brand-blue flex items-center justify-center mb-4">
+                <f.icon size={22} />
+              </div>
+              <h3 className="text-base font-bold text-ink">{f.title}</h3>
+              <p className="mt-1 text-sm text-ink-body">{f.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-brand-gold-light to-brand-gold text-[#1a1108] text-sm font-bold shadow-gold-glow">
+            🚀 Solutions sur-mesure
+          </span>
         </div>
       </div>
     </section>

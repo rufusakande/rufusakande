@@ -1,153 +1,86 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Award, Clock, TrendingUp } from 'lucide-react';
-import './WhyChooseMe.css';
 
 const WhyChooseMe = () => {
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [counters, setCounters] = useState({
-    experience: 0,
-    projects: 0,
-    satisfaction: 0
-  });
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const [counters, setCounters] = useState({ experience: 0, projects: 0, satisfaction: 0 });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          startCounters();
-        }
-      },
-      {
-        threshold: 0.3,
-        rootMargin: '50px'
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setVisible(true); start(); }
+    }, { threshold: 0.25 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
   }, []);
 
-  const startCounters = () => {
+  const start = () => {
     const targets = { experience: 4, projects: 15, satisfaction: 100 };
-    const duration = 2000;
-    const steps = 60;
-    const stepDuration = duration / steps;
-
-    Object.keys(targets).forEach(key => {
-      const target = targets[key];
-      const increment = target / steps;
-      let current = 0;
-      
+    const steps = 60, duration = 2000;
+    Object.keys(targets).forEach((k) => {
+      const target = targets[k];
+      const inc = target / steps;
+      let cur = 0;
       const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
-        setCounters(prev => ({ ...prev, [key]: Math.floor(current) }));
-      }, stepDuration);
+        cur += inc;
+        if (cur >= target) { cur = target; clearInterval(timer); }
+        setCounters((p) => ({ ...p, [k]: Math.floor(cur) }));
+      }, duration / steps);
     });
   };
 
-  const advantages = [
-    {
-      icon: <Award size={48} />,
-      number: counters.experience,
-      suffix: "+ ans",
-      title: "D'expérience",
-      description: "Une expertise solide acquise sur de nombreux projets variés, des startups aux grandes entreprises.",
-      color: "#007BFF"
-    },
-    {
-      icon: <TrendingUp size={48} />,
-      number: counters.projects,
-      suffix: "+ projets",
-      title: "Réalisés avec succès",
-      description: "Des solutions web performantes qui ont aidé mes clients à atteindre leurs objectifs business.",
-      color: "#E4B31A"
-    },
-    {
-      icon: <Clock size={48} />,
-      number: counters.satisfaction,
-      suffix: "%",
-      title: "De satisfaction client",
-      description: "Réactif, à l'écoute et orienté résultats. Votre projet est ma priorité absolue.",
-      color: "#007BFF"
-    }
+  const items = [
+    { icon: Award, n: counters.experience, suffix: '+ ans', title: "D'expérience", desc: 'Une expertise solide acquise sur de nombreux projets variés, des startups aux grandes entreprises.' },
+    { icon: TrendingUp, n: counters.projects, suffix: '+ projets', title: 'Réalisés avec succès', desc: 'Des solutions web performantes qui ont aidé mes clients à atteindre leurs objectifs business.' },
+    { icon: Clock, n: counters.satisfaction, suffix: '%', title: 'De satisfaction client', desc: "Réactif, à l'écoute et orienté résultats. Votre projet est ma priorité absolue." },
   ];
 
   return (
-    <section 
-      id="why-choose-me" 
-      className={`why-choose-me ${isVisible ? 'animate' : ''}`}
-      ref={sectionRef}
-      aria-labelledby="advantages-title"
-    >
-      <div className="why-choose-me__container">
-        <div className="why-choose-me__header">
-          <h2 id="advantages-title" className="why-choose-me__title">
-            Pourquoi me faire confiance ?
+    <section ref={ref} className="relative py-24 md:py-32 bg-gradient-to-b from-surface to-white" aria-labelledby="advantages-title">
+      <div className="relative max-w-[1200px] mx-auto px-6">
+        <div className={`text-center max-w-2xl mx-auto transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-gold/15 text-brand-gold-deep text-xs font-semibold uppercase tracking-[0.18em] mb-5">Mes atouts</span>
+          <h2 id="advantages-title" className="text-[clamp(2rem,4.5vw,3rem)] font-bold text-ink tracking-[-0.02em]">
+            Pourquoi me faire <span className="serif-italic text-gradient-gold">confiance</span> ?
           </h2>
-          <p className="why-choose-me__subtitle">
-            Des résultats concrets et une approche personnalisée pour chaque projet
+          <p className="mt-5 text-ink-body text-lg leading-relaxed">
+            Des résultats concrets et une approche personnalisée pour chaque projet.
           </p>
         </div>
-        
-        <div className="why-choose-me__grid">
-          {advantages.map((advantage, index) => (
-            <article 
-              key={index}
-              className="why-choose-me__card"
-              style={{ 
-                animationDelay: `${index * 0.2}s`,
-                '--card-color': advantage.color
-              }}
-              tabIndex="0"
-              role="article"
-              aria-labelledby={`advantage-${index}-title`}
+
+        <div className="mt-16 grid md:grid-cols-3 gap-6">
+          {items.map((it, i) => (
+            <article
+              key={it.title}
+              className={`relative bg-white border border-line rounded-3xl p-8 shadow-card hover:shadow-floating hover:-translate-y-1.5 transition-all duration-500 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: `${i * 120}ms` }}
             >
-              <div className="why-choose-me__card-icon" aria-hidden="true">
-                {advantage.icon}
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-blue-accent text-white inline-flex items-center justify-center shadow-blue-glow mb-6">
+                <it.icon size={28} />
               </div>
-              <div className="why-choose-me__card-number">
-                <span className="why-choose-me__counter" aria-live="polite">
-                  {advantage.number}
-                </span>
-                <span className="why-choose-me__suffix">{advantage.suffix}</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-5xl font-extrabold text-gradient-gold leading-none">{it.n}</span>
+                <span className="text-ink-body font-semibold">{it.suffix}</span>
               </div>
-              <div className="why-choose-me__card-content">
-                <h3 id={`advantage-${index}-title`} className="why-choose-me__card-title">
-                  {advantage.title}
-                </h3>
-                <p className="why-choose-me__card-description">
-                  {advantage.description}
-                </p>
-              </div>
-              <div className="why-choose-me__card-glow" aria-hidden="true"></div>
+              <h3 className="mt-3 text-xl font-bold text-ink">{it.title}</h3>
+              <p className="mt-2 text-ink-body text-[15px] leading-relaxed">{it.desc}</p>
             </article>
           ))}
         </div>
-        
-        <div className="why-choose-me__testimonial">
-          <blockquote className="why-choose-me__quote">
-            <p className="why-choose-me__quote-text">
-              "Chaque projet est une nouvelle opportunité de créer quelque chose d'exceptionnel. 
-              Mon objectif : transformer vos idées en solutions web qui dépassent vos attentes."
+
+        <div className={`mt-16 max-w-3xl mx-auto rounded-3xl p-8 md:p-10 bg-gradient-to-br from-brand-blue to-brand-blue-deep text-white shadow-floating relative overflow-hidden transition-all duration-700 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-brand-gold/20 blur-3xl" />
+          <blockquote className="relative">
+            <p className="text-lg md:text-xl serif-italic text-white/90 leading-relaxed">
+              « Chaque projet est une nouvelle opportunité de créer quelque chose d'exceptionnel. Mon objectif : transformer vos idées en solutions web qui dépassent vos attentes. »
             </p>
-            <cite className="why-choose-me__quote-author">
-              <strong>Rufus Akande</strong>
-              <span>Développeur Web Freelance</span>
+            <cite className="mt-5 not-italic flex flex-col">
+              <strong className="text-brand-gold-light">Rufus Akande</strong>
+              <span className="text-white/60 text-sm">Développeur Web Freelance</span>
             </cite>
           </blockquote>
         </div>
       </div>
-      
-      <div className="why-choose-me__background-pattern" aria-hidden="true"></div>
     </section>
   );
 };
