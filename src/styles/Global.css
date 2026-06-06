@@ -1,0 +1,84 @@
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GLOBAL STYLES — Dark Mode Fintech Premium
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Couleurs globales - remplace tous les anciens tokens */
+:root {
+  /* Couleurs principales */
+  --primary: var(--brand-lime);        /* #CCFF00 */
+  --primary-hover: var(--brand-lime-bright); /* #DCFF33 */
+  --primary-dark: var(--brand-lime-dark);    /* #B8FF00 */
+  
+  --secondary: var(--brand-cyan);      /* #00E5B8 */
+  --secondary-light: var(--brand-cyan-light); /* #00FFCC */
+  
+  --bg-dark: var(--brand-bg);          /* #0f2618 */
+  --bg-darker: #0a1810;
+  --bg-lighter: var(--brand-bg-2);     /* #1a3a2a */
+  
+  --text-primary: var(--text-strong);  /* #FFFFFF */
+  --text-secondary: var(--text-body);  /* #E0E0E0 */
+  --text-muted: var(--text-muted);     /* #A0A0A0 */
+}
+
+/* Section génériques */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Links */
+a {
+  color: var(--primary);
+  transition: all 0.3s var(--ease-premium);
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+}
+
+/* Paragraphes */
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Utilities */
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.text-muted { color: var(--text-muted); }
+
+.bg-dark { background: var(--bg-dark); }
+.bg-darker { background: var(--bg-darker); }
+
+.gradient-text {
+  background: var(--gradient-text-lime);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animations fluides */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-behavior: smooth;
+  }
+}

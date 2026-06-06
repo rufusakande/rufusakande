@@ -9,7 +9,8 @@ import Footer from '../components/layout/Footer/Footer'
 
 function Home () {
     return (
-        <>  <Header/>
+        <>  
+            <Header/>
             <main>
                 <Heros/>
                 <WhatIOffer/>

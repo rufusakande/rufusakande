@@ -38,7 +38,7 @@ const Heros = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-surface" />
       </div>
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 mx-auto sm:px-12 flex flex-col items-center">
         {/* Pill badge */}
         <div className="flex justify-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-line bg-white/70 backdrop-blur-md text-[13px] text-ink-body shadow-card">
@@ -48,7 +48,7 @@ const Heros = () => {
         </div>
 
         {/* Headline */}
-        <h1 className="mt-8 text-center font-display font-semibold tracking-[-0.03em] leading-[1.05] text-[clamp(2.5rem,6.2vw,5.25rem)] text-ink">
+        <h1 className="mt-8 text-center font-display font-semibold tracking-[-0.03em] leading-[1.05] text-[clamp(2.5rem,6.2vw,5.25rem)] text-ink max-w-[1050px]">
           Des sites web{' '}
           <span className="font-serif italic font-normal bg-gradient-to-r from-brand-gold-light via-brand-gold to-brand-gold-deep bg-clip-text text-transparent">
             qui convertissent
@@ -58,10 +58,8 @@ const Heros = () => {
           en clients fidèles
         </h1>
 
-        <p className="mt-6 mx-auto max-w-2xl text-center text-ink-body text-base md:text-[17px] leading-relaxed">
-          De la TPE à la PME, je conçois des sites web orientés conversion —
-          performants, élégants, et pensés pour transformer chaque visiteur en
-          opportunité business.
+        <p className="mt-6 py-4 mx-auto max-w-3xl text-center text-ink-body text-base md:text-[17px] leading-relaxed">
+          De la TPE à la PME, je conçois des sites web orientés conversion performants, élégants, et pensés pour transformer chaque visiteur en opportunité business.
         </p>
 
         {/* CTAs */}
@@ -166,15 +164,15 @@ const Heros = () => {
           {/* Floating card — Crypto */}
           <div className="hidden sm:flex absolute right-0 md:right-4 top-10 md:top-16 w-[240px] rounded-2xl bg-white/90 backdrop-blur-xl border border-line p-4 items-center gap-3 shadow-floating animate-[premium-float_6s_ease-in-out_infinite_0.5s]">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-gold-light to-brand-gold-deep flex items-center justify-center text-[#1a1108] font-bold">
-              ₿
+              €
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <p className="text-base font-bold text-ink">958 042</p>
                 <span className="text-[10px] text-brand-gold-deep font-semibold">+14,7 %</span>
               </div>
-              <p className="text-[11px] text-ink-muted truncate">Bitcoin / BTC</p>
-              <p className="text-[10px] text-ink-muted/70 truncate">Balance : 2 750,59 USD</p>
+              <p className="text-[11px] text-ink-muted truncate">Revenu total</p>
+              <p className="text-[10px] text-ink-muted/70 truncate">  </p>
             </div>
           </div>
 
@@ -211,9 +209,9 @@ const Heros = () => {
 
         {/* Trust row */}
         <div className="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-ink-muted text-xs uppercase tracking-[0.2em]">
-          <span>4+ ans d'expérience</span>
+          <span>+4 ans d'expérience</span>
           <span className="w-1 h-1 rounded-full bg-ink-muted/40" />
-          <span>15+ projets livrés</span>
+          <span>+15 projets livrés</span>
           <span className="w-1 h-1 rounded-full bg-ink-muted/40" />
           <span>100 % clients satisfaits</span>
         </div>
