@@ -106,30 +106,22 @@ function PortfolioDetail() {
 
           <div className="max-w-[1200px] mx-auto px-6 grid lg:grid-cols-[1fr_320px] gap-10">
             <div>
-              {portfolio.category && (
-                <span className="inline-flex px-3 py-1 rounded-full bg-gradient-to-r from-brand-gold-light to-brand-gold text-[#1a1108] text-xs font-bold uppercase mb-4">{portfolio.category}</span>
-              )}
-              <h1 className="text-[clamp(2rem,4.5vw,3.25rem)] font-bold text-ink tracking-[-0.02em] leading-[1.15]">{portfolio.title}</h1>
-
               {portfolio.project_url && (
-                <div className="mt-6">
+                <div className="mb-8">
                   <Link to={portfolio.project_url} target="_blank" rel="noopener noreferrer" className="btn-gold premium-shine">
-                    <ExternalLink size={16} /> Voir le projet
+                    <ExternalLink size={16} /> Voir le projet en ligne
                   </Link>
                 </div>
               )}
 
-              <section className="mt-12 pb-10 border-b border-line">
+              <section className="pb-10 border-b border-line">
                 <h2 className="text-2xl font-bold text-ink mb-5">À propos du projet</h2>
-                {portfolio.short_description && (
-                  <p className="p-5 rounded-2xl bg-gradient-to-br from-brand-blue-soft/60 to-white border-l-4 border-brand-blue serif-italic text-ink text-lg">
-                    {portfolio.short_description}
-                  </p>
-                )}
-                {portfolio.long_description && (
-                  <div className="mt-5 space-y-3 text-ink-body leading-relaxed">
+                {portfolio.long_description ? (
+                  <div className="space-y-3 text-ink-body leading-relaxed text-[1.02rem]">
                     {portfolio.long_description.split('\n').map((p, i) => <p key={i}>{p}</p>)}
                   </div>
+                ) : (
+                  <p className="text-ink-body">Plus de détails à venir.</p>
                 )}
               </section>
 
