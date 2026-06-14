@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ExternalLink, Eye, Code, Palette, ShoppingCart, Users, Loader, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, Eye, Code, Palette, ShoppingCart, Users, Loader, ArrowUpRight, Images, Play } from 'lucide-react';
 import { usePortfolio } from '../../lib/useSupabase';
 
 import img1 from '../../assets/Images/Rufus Akande développeur web freelance22.png';
