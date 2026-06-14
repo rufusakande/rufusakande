@@ -59,19 +59,47 @@ function PortfolioDetail() {
     );
   }
 
+  const media = useMemo(() => {
+    if (!portfolio) return [];
+    const imgs = [];
+    if (portfolio.image_url) imgs.push({ type: 'image', url: portfolio.image_url });
+    (portfolio.gallery || []).forEach((u) => {
+      if (u && u !== portfolio.image_url) imgs.push({ type: 'image', url: u });
+    });
+    (portfolio.videos || []).forEach((u) => u && imgs.push({ type: 'video', url: u }));
+    return imgs;
+  }, [portfolio]);
+
   return (
     <>
       <Header />
-      <main className="pt-32 pb-20 bg-white">
-        <article>
+      <main className="relative pt-32 pb-24 bg-gradient-to-b from-white via-surface to-white overflow-hidden">
+        {/* Premium ambient halos */}
+        <div className="pointer-events-none absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full opacity-40" style={{ background: 'radial-gradient(circle, rgba(212,164,55,0.22), transparent 60%)', filter: 'blur(60px)' }} />
+        <div className="pointer-events-none absolute top-60 -left-40 w-[500px] h-[500px] rounded-full opacity-40" style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.20), transparent 60%)', filter: 'blur(60px)' }} />
+
+        <article className="relative">
           <div className="max-w-[1200px] mx-auto px-6">
             <button onClick={() => navigate('/realisations')} className="inline-flex items-center gap-2 text-brand-blue font-semibold hover:gap-3 transition-all mb-8">
               <ArrowLeft size={18} /> Retour aux réalisations
             </button>
 
-            {portfolio.image_url && (
-              <div className="rounded-3xl overflow-hidden shadow-card mb-10">
-                <img src={portfolio.image_url} alt={portfolio.title} className="w-full max-h-[600px] object-cover" />
+            {/* Title block above the carousel for a premium magazine feel */}
+            <div className="max-w-3xl mb-8">
+              {portfolio.category && (
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-brand-gold-light to-brand-gold text-[#1a1108] text-xs font-bold uppercase tracking-[0.16em] mb-4">{portfolio.category}</span>
+              )}
+              <h1 className="text-[clamp(2rem,4.5vw,3.25rem)] font-bold text-ink tracking-[-0.02em] leading-[1.1]">
+                {portfolio.title}
+              </h1>
+              {portfolio.short_description && (
+                <p className="mt-4 text-lg text-ink-body leading-relaxed serif-italic">{portfolio.short_description}</p>
+              )}
+            </div>
+
+            {media.length > 0 && (
+              <div className="mb-12">
+                <MediaCarousel media={media} title={portfolio.title} />
               </div>
             )}
           </div>
