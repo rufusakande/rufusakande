@@ -10,16 +10,19 @@ function AdminPortfolio() {
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [saving, setSaving] = useState(false);
-  const [formData, setFormData] = useState({
+  const emptyForm = {
     title: '',
     short_description: '',
     long_description: '',
     image_url: '',
+    gallery: '',
+    videos: '',
     project_url: '',
     category: 'webapp',
     tags: '',
     status: 'draft',
-  });
+  };
+  const [formData, setFormData] = useState(emptyForm);
 
   useEffect(() => {
     loadPortfolios();
@@ -45,9 +48,12 @@ function AdminPortfolio() {
     setSaving(true);
 
     try {
+      const toList = (v) => v.split(/[\n,]+/).map((s) => s.trim()).filter(Boolean);
       const payload = {
         ...formData,
-        tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean),
+        tags: toList(formData.tags),
+        gallery: toList(formData.gallery),
+        videos: toList(formData.videos),
       };
 
       if (editingId) {
@@ -87,6 +93,8 @@ function AdminPortfolio() {
       short_description: portfolio.short_description || '',
       long_description: portfolio.long_description || '',
       image_url: portfolio.image_url || '',
+      gallery: (portfolio.gallery || []).join('\n'),
+      videos: (portfolio.videos || []).join('\n'),
       project_url: portfolio.project_url || '',
       category: portfolio.category || 'webapp',
       tags: (portfolio.tags || []).join(', '),
@@ -96,16 +104,7 @@ function AdminPortfolio() {
   };
 
   const resetForm = () => {
-    setFormData({
-      title: '',
-      short_description: '',
-      long_description: '',
-      image_url: '',
-      project_url: '',
-      category: 'webapp',
-      tags: '',
-      status: 'draft',
-    });
+    setFormData(emptyForm);
     setEditingId(null);
     setShowForm(false);
   };
@@ -174,12 +173,42 @@ function AdminPortfolio() {
               </div>
 
               <div className="form-group">
-                <label>URL de l'image</label>
+                <label>Image principale (couverture)</label>
                 <input
                   type="text"
                   value={formData.image_url}
                   onChange={(e) => setFormData({...formData, image_url: e.target.value})}
-                  placeholder="https://example.com/image.jpg"
+                  placeholder="https://example.com/cover.jpg"
+                />
+                {formData.image_url && (
+                  <img src={formData.image_url} alt="" style={{ marginTop: 8, maxHeight: 120, borderRadius: 8, objectFit: 'cover' }} />
+                )}
+              </div>
+
+              <div className="form-group">
+                <label>Galerie d'images (une URL par ligne)</label>
+                <textarea
+                  value={formData.gallery}
+                  onChange={(e) => setFormData({...formData, gallery: e.target.value})}
+                  rows="4"
+                  placeholder={'https://exemple.com/img-1.jpg\nhttps://exemple.com/img-2.jpg'}
+                />
+                {formData.gallery && (
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
+                    {formData.gallery.split(/[\n,]+/).map((u) => u.trim()).filter(Boolean).map((u, i) => (
+                      <img key={i} src={u} alt="" style={{ width: 80, height: 60, borderRadius: 6, objectFit: 'cover' }} />
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label>Vidéos (une URL par ligne — YouTube, Vimeo ou MP4)</label>
+                <textarea
+                  value={formData.videos}
+                  onChange={(e) => setFormData({...formData, videos: e.target.value})}
+                  rows="3"
+                  placeholder={'https://youtu.be/xxxxxxxxxxx\nhttps://exemple.com/video.mp4'}
                 />
               </div>
 
