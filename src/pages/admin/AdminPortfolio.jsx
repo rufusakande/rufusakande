@@ -173,12 +173,42 @@ function AdminPortfolio() {
               </div>
 
               <div className="form-group">
-                <label>URL de l'image</label>
+                <label>Image principale (couverture)</label>
                 <input
                   type="text"
                   value={formData.image_url}
                   onChange={(e) => setFormData({...formData, image_url: e.target.value})}
-                  placeholder="https://example.com/image.jpg"
+                  placeholder="https://example.com/cover.jpg"
+                />
+                {formData.image_url && (
+                  <img src={formData.image_url} alt="" style={{ marginTop: 8, maxHeight: 120, borderRadius: 8, objectFit: 'cover' }} />
+                )}
+              </div>
+
+              <div className="form-group">
+                <label>Galerie d'images (une URL par ligne)</label>
+                <textarea
+                  value={formData.gallery}
+                  onChange={(e) => setFormData({...formData, gallery: e.target.value})}
+                  rows="4"
+                  placeholder={'https://exemple.com/img-1.jpg\nhttps://exemple.com/img-2.jpg'}
+                />
+                {formData.gallery && (
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
+                    {formData.gallery.split(/[\n,]+/).map((u) => u.trim()).filter(Boolean).map((u, i) => (
+                      <img key={i} src={u} alt="" style={{ width: 80, height: 60, borderRadius: 6, objectFit: 'cover' }} />
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label>Vidéos (une URL par ligne — YouTube, Vimeo ou MP4)</label>
+                <textarea
+                  value={formData.videos}
+                  onChange={(e) => setFormData({...formData, videos: e.target.value})}
+                  rows="3"
+                  placeholder={'https://youtu.be/xxxxxxxxxxx\nhttps://exemple.com/video.mp4'}
                 />
               </div>
 
