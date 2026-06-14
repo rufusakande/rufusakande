@@ -1,7 +1,8 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Header from '../components/layout/Header/Header';
 import Footer from '../components/layout/Footer/Footer';
+import MediaCarousel from '../components/shared/MediaCarousel';
 import { supabase } from '@/integrations/supabase/client';
 import { Loader, ArrowLeft, ExternalLink } from 'lucide-react';
 
