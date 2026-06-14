@@ -10,16 +10,19 @@ function AdminPortfolio() {
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [saving, setSaving] = useState(false);
-  const [formData, setFormData] = useState({
+  const emptyForm = {
     title: '',
     short_description: '',
     long_description: '',
     image_url: '',
+    gallery: '',
+    videos: '',
     project_url: '',
     category: 'webapp',
     tags: '',
     status: 'draft',
-  });
+  };
+  const [formData, setFormData] = useState(emptyForm);
 
   useEffect(() => {
     loadPortfolios();
