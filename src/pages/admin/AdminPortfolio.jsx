@@ -48,9 +48,12 @@ function AdminPortfolio() {
     setSaving(true);
 
     try {
+      const toList = (v) => v.split(/[\n,]+/).map((s) => s.trim()).filter(Boolean);
       const payload = {
         ...formData,
-        tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean),
+        tags: toList(formData.tags),
+        gallery: toList(formData.gallery),
+        videos: toList(formData.videos),
       };
 
       if (editingId) {
@@ -90,6 +93,8 @@ function AdminPortfolio() {
       short_description: portfolio.short_description || '',
       long_description: portfolio.long_description || '',
       image_url: portfolio.image_url || '',
+      gallery: (portfolio.gallery || []).join('\n'),
+      videos: (portfolio.videos || []).join('\n'),
       project_url: portfolio.project_url || '',
       category: portfolio.category || 'webapp',
       tags: (portfolio.tags || []).join(', '),
@@ -99,16 +104,7 @@ function AdminPortfolio() {
   };
 
   const resetForm = () => {
-    setFormData({
-      title: '',
-      short_description: '',
-      long_description: '',
-      image_url: '',
-      project_url: '',
-      category: 'webapp',
-      tags: '',
-      status: 'draft',
-    });
+    setFormData(emptyForm);
     setEditingId(null);
     setShowForm(false);
   };
