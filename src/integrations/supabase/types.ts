@@ -106,6 +106,7 @@ export type Database = {
           tags: string[] | null
           title: string
           updated_at: string
+          videos: string[]
         }
         Insert: {
           category?: string | null
@@ -120,6 +121,7 @@ export type Database = {
           tags?: string[] | null
           title: string
           updated_at?: string
+          videos?: string[]
         }
         Update: {
           category?: string | null
@@ -134,6 +136,7 @@ export type Database = {
           tags?: string[] | null
           title?: string
           updated_at?: string
+          videos?: string[]
         }
         Relationships: []
       }
