@@ -71,10 +71,41 @@ function PortfolioDetail() {
     return imgs;
   }, [portfolio]);
 
+  const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const rawDesc = portfolio.short_description || portfolio.long_description || `Découvrez le projet ${portfolio.title} par Rufus Akande.`;
+  const description = rawDesc.replace(/\s+/g, ' ').trim().slice(0, 160);
+  const ogImage = portfolio.image_url || (portfolio.gallery && portfolio.gallery[0]) || '';
+
   return (
     <>
+      <Helmet>
+        <title>{`${portfolio.title} — Portfolio · Rufus Akande`}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={pageUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={portfolio.title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={pageUrl} />
+        {ogImage && <meta property="og:image" content={ogImage} />}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={portfolio.title} />
+        <meta name="twitter:description" content={description} />
+        {ogImage && <meta name="twitter:image" content={ogImage} />}
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'CreativeWork',
+          name: portfolio.title,
+          description,
+          image: ogImage || undefined,
+          url: pageUrl,
+          author: { '@type': 'Person', name: 'Rufus Akande' },
+          keywords: (portfolio.tags || []).join(', ') || undefined,
+          dateCreated: portfolio.created_at,
+        })}</script>
+      </Helmet>
       <Header />
       <main className="relative pt-32 pb-24 bg-gradient-to-b from-white via-surface to-white overflow-hidden">
+
         {/* Premium ambient halos */}
         <div className="pointer-events-none absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full opacity-40" style={{ background: 'radial-gradient(circle, rgba(212,164,55,0.22), transparent 60%)', filter: 'blur(60px)' }} />
         <div className="pointer-events-none absolute top-60 -left-40 w-[500px] h-[500px] rounded-full opacity-40" style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.20), transparent 60%)', filter: 'blur(60px)' }} />
