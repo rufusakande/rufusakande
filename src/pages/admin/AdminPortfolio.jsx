@@ -113,8 +113,10 @@ function AdminPortfolio() {
     const path = `portfolio/${Date.now()}-${uid()}.${ext}`;
     const { error } = await supabase.storage.from('media').upload(path, file, { cacheControl: '3600', upsert: false });
     if (error) throw error;
-    const { data } = supabase.storage.from('media').getPublicUrl(path);
-    return data.publicUrl;
+    // Bucket is private — mint a long-lived signed URL (10 years)
+    const { data, error: signErr } = await supabase.storage.from('media').createSignedUrl(path, 60 * 60 * 24 * 365 * 10);
+    if (signErr) throw signErr;
+    return data.signedUrl;
   };
 
   const handleFileUpload = async (e, kind) => {
