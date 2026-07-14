@@ -31,6 +31,22 @@ function PortfolioDetail() {
     fetch();
   }, [id]);
 
+  const media = useMemo(() => {
+    if (!portfolio) return [];
+    const imgs = [];
+    if (portfolio.image_url) imgs.push({ type: 'image', url: portfolio.image_url });
+    (portfolio.gallery || []).forEach((u) => {
+      if (u && u !== portfolio.image_url) imgs.push({ type: 'image', url: u });
+    });
+    (portfolio.videos || []).forEach((u) => u && imgs.push({ type: 'video', url: u }));
+    return imgs;
+  }, [portfolio]);
+
+  const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const rawDesc = portfolio?.short_description || portfolio?.long_description || `Découvrez le projet ${portfolio?.title || 'ce projet'} par Rufus Akande.`;
+  const description = rawDesc.replace(/\s+/g, ' ').trim().slice(0, 160);
+  const ogImage = portfolio?.image_url || (portfolio?.gallery && portfolio.gallery[0]) || '';
+
   if (loading) {
     return (
       <>
@@ -59,22 +75,6 @@ function PortfolioDetail() {
       </>
     );
   }
-
-  const media = useMemo(() => {
-    if (!portfolio) return [];
-    const imgs = [];
-    if (portfolio.image_url) imgs.push({ type: 'image', url: portfolio.image_url });
-    (portfolio.gallery || []).forEach((u) => {
-      if (u && u !== portfolio.image_url) imgs.push({ type: 'image', url: u });
-    });
-    (portfolio.videos || []).forEach((u) => u && imgs.push({ type: 'video', url: u }));
-    return imgs;
-  }, [portfolio]);
-
-  const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const rawDesc = portfolio.short_description || portfolio.long_description || `Découvrez le projet ${portfolio.title} par Rufus Akande.`;
-  const description = rawDesc.replace(/\s+/g, ' ').trim().slice(0, 160);
-  const ogImage = portfolio.image_url || (portfolio.gallery && portfolio.gallery[0]) || '';
 
   return (
     <>
