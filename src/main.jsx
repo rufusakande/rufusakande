@@ -18,6 +18,8 @@ import AdminPortfolio from './pages/admin/AdminPortfolio';
 import AdminBlog from './pages/admin/AdminBlog';
 import AdminMessages from './pages/admin/AdminMessages';
 import AdminTestimonials from './pages/admin/AdminTestimonials';
+import Login from './pages/Login';
+import OAuthConsent from './pages/OAuthConsent';
 import { ProtectedAdminRoute } from './components/admin/ProtectedAdminRoute';
 import { useAdminAuth } from './hooks/useAdminAuth';
 
@@ -35,6 +37,10 @@ function App() {
       <Route path='/blog/:slug' element={<BlogPost/>} />
       <Route path='/contact' element={<Contact/>} />
       
+      {/* Auth & OAuth consent */}
+      <Route path='/login' element={<Login/>} />
+      <Route path='/.lovable/oauth/consent' element={<OAuthConsent/>} />
+
       {/* Admin Routes */}
       <Route path='/admin/login' element={<AdminLogin/>} />
       <Route path='/admin/dashboard' element={
