@@ -37,6 +37,10 @@ function App() {
       <Route path='/blog/:slug' element={<BlogPost/>} />
       <Route path='/contact' element={<Contact/>} />
       
+      {/* Auth & OAuth consent */}
+      <Route path='/login' element={<Login/>} />
+      <Route path='/.lovable/oauth/consent' element={<OAuthConsent/>} />
+
       {/* Admin Routes */}
       <Route path='/admin/login' element={<AdminLogin/>} />
       <Route path='/admin/dashboard' element={
