@@ -18,6 +18,8 @@ import AdminPortfolio from './pages/admin/AdminPortfolio';
 import AdminBlog from './pages/admin/AdminBlog';
 import AdminMessages from './pages/admin/AdminMessages';
 import AdminTestimonials from './pages/admin/AdminTestimonials';
+import Login from './pages/Login';
+import OAuthConsent from './pages/OAuthConsent';
 import { ProtectedAdminRoute } from './components/admin/ProtectedAdminRoute';
 import { useAdminAuth } from './hooks/useAdminAuth';
 
